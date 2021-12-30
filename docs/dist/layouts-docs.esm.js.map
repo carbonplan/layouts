@@ -1,1 +1,0 @@
-{"version":3,"file":"layouts-docs.esm.js","sources":["../src/docs.js"],"sourcesContent":["import React from 'react'\nimport { Box } from 'theme-ui'\n\nconst Docs = () => {\n\treturn <Box>docs</Box>\n}\n\nexport default Docs"],"names":["Docs","React","Box"],"mappings":"oDAGMA,IAAAA,EAAO,wBACZ,OAAOC,gBAACC"}
