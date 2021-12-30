@@ -1,0 +1,17 @@
+{
+  "name": "layouts-docs",
+  "amdName": "layoutsDocs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "layouts for docs",
+  "main": "dst/layouts-docs.js",
+  "module": "dst/layouts-docs.module.mjs",
+  "umd:main": "dst/layouts-docs.umd.js",
+  "src": "src/index.js",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.14.0 || ^17.0.2",
+    "react-dom": "^16.14.0 || ^17.0.2",
+    "theme-ui": ">=0.11.0"
+  }
+}

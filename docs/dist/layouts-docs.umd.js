@@ -1,0 +1,2 @@
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(exports,require("react"),require("theme-ui")):"function"==typeof define&&define.amd?define(["exports","react","theme-ui"],t):t((e||self).layoutsDocs={},e.react,e.themeUi)}(this,function(e,t,o){function n(e){return e&&"object"==typeof e&&"default"in e?e:{default:e}}var f=/*#__PURE__*/n(t);e.Docs=function(){/*#__PURE__*/return f.default.createElement(o.Box,null,"docs")}});
+//# sourceMappingURL=layouts-docs.umd.js.map
