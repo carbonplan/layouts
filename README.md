@@ -38,9 +38,7 @@ and then import the component(s) you want into your `next` project.
 The easiest way to understand these components is to see them in use across our sites.
 
 - Visit [carbonplan.org/research](https://carbonplan.org/research) or [github.com/carbonplan/research](https://github.com/carbonplan/research) to see the use of `Article` and `Tool`.
-
 - Visit [carbonplan.org/blog](https://carbonplan.org/blog) or [github.com/carbonplan/blog](https://github.com/carbonplan/blog) to see the use of `Post`.
-
 - Visit [carbonplan.org/design](https://carbonplan.org/design) or [github.com/carbonplan/design](https://github.com/carbonplan/design) to see the use of `NavSection` and `NavMenu`.
 
 ## api
