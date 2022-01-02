@@ -7,7 +7,7 @@
 
 _pre release_
 
-**common components for documents and tools**
+**page layout components for documents and tools**
 
 [![GitHub][github-badge]][github]
 [![Build Status]][actions]
@@ -43,7 +43,7 @@ The easiest way to understand these components is to see them in use across our 
 
 ## api
 
-Several of these components are wrappers for the [`Layout`](https://github.com/carbonplan/components/blob/main/src/layout.js) component that we generally use as the top-level component for our pages. As such, they are also intended to act as top-level page components. In particular, `Article` `Supplement` `Post` `Tool` and `NavSection` all play this role. 
+Several of these components are wrappers for the [`Layout`](https://github.com/carbonplan/components/blob/main/src/layout.js) component that we generally use as the top-level component for our pages. As such, they are also intended to act as top-level page components. In particular, `Article` `Supplement` `Post` `Tool` and `NavSection` all play this role.
 
 The remaining components are either elements of those layouts that might also be useful on their own, like `QuickLook` or `NavMenu`, or components that we tend to use only in the context of these layouts, like the `SectionDivider` within an `Article` or the `FigureCaption` that we use within an `Article` or `Post`.
 
