@@ -47,7 +47,7 @@ Several of these components are wrappers for the [`Layout`](https://github.com/c
 
 The remaining components are either elements of those layouts that might also be useful on their own, like `QuickLook` or `NavMenu`, or components that we tend to use only in the context of these layouts, like the `SectionDivider` within an `Article` or the `FigureCaption` that we use within an `Article` or `Post`.
 
-Here are all the components currently available, grouped by where we tend to use them (some components appear in multiple groups)
+Here are all the components currently available, grouped by where we tend to use them (some components appear in multiple groups):
 
 ### research articles
 
