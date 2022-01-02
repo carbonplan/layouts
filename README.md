@@ -21,7 +21,7 @@ _pre release_
 [mit license]: https://badgen.net/badge/license/MIT/blue
 [npm version]: https://badgen.net/npm/v/@carbonplan/layouts
 
-These are a set of [`react`](https://github.com/facebook/react) components for reusable layout patterns, such as those used in our articles, tools, blog posts, and maps. Similar to those in the [`@carbonplan/components`](https://github.com/carbonplan/components) package, these components assume and make extensive use of [`theme-ui`](https://github.com/system-ui/theme-ui) and [`next`](https://github.com/vercel/next.js), and are meant to be composed with our [`theme`](https://github.com/carbonplan/theme). These components also work particularly well with MDX, which we use for authoring lots of our content.
+Reusable [`react`](https://github.com/facebook/react) components for common layouts, such as those used in our articles, tools, blog posts, and maps. Similar to those in the [`@carbonplan/components`](https://github.com/carbonplan/components) package, these components assume and make extensive use of [`theme-ui`](https://github.com/system-ui/theme-ui) and [`next`](https://github.com/vercel/next.js), and are meant to be composed with our [`theme`](https://github.com/carbonplan/theme). These components also work particularly well with MDX, which we use for authoring lots of our content.
 
 ## usage
 
