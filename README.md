@@ -43,7 +43,7 @@ The easiest way to understand these components is to see them in use across our 
 
 ## api
 
-Here are all the components currently available, grouped under the places we tend to use them (some components appear in multiple places groups)
+Here are all the components currently available, grouped by where we tend to use them (some components appear in multiple groups)
 
 ### research articles
 
