@@ -1,16 +1,13 @@
 {
   "name": "@carbonplan/layouts",
-  "version": "1.0.0-develop.9",
-  "description": "page layout components",
-  "main": "dst/layouts.js",
-  "module": "dst/layouts.module.js",
-  "umd:main": "dst/layouts.umd.js",
+  "version": "1.0.0-develop.22",
+  "description": "page layout components for reusable content",
+  "type": "module",
+  "main": "dst/index.cjs",
+  "module": "dst/index.module.js",
   "source": "src/index.js",
   "scripts": {
-    "build": "npm-run-all --parallel build:*",
-    "build:core": "rimraf dst && microbundle build --jsx React.createElement --jsxFragment React.Fragment",
-    "build:blog": "rimraf blog/dst && microbundle build --cwd blog --jsx React.createElement --jsxFragment React.Fragment",
-    "build:docs": "rimraf docs/dst && microbundle build --cwd docs --jsx React.createElement --jsxFragment React.Fragment"
+    "build": "rimraf dst && microbundle build --jsx React.createElement --jsxFragment React.Fragment -f modern,es,cjs"
   },
   "repository": {
     "type": "git",
@@ -22,26 +19,30 @@
     "url": "https://github.com/carbonplan/layouts/issues"
   },
   "files": [
-    "blog/dst",
+    "pubs/dst",
     "docs/dst",
     "dst",
     "README.md",
     "package.json"
   ],
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 80,
+    "quoteProps": "as-needed",
+    "jsxSingleQuote": true
+  },
   "homepage": "https://github.com/carbonplan/layouts#readme",
   "exports": {
     ".": {
-      "require": "./dst/layouts.js",
-      "default": "./dst/layouts.modern.js"
-    },
-    "./blog": {
-      "require": "./blog/dst/layouts-blog.js",
-      "default": "./blog/dst/layouts-blog.modern.js"
-    },
-    "./docs": {
-      "require": "./docs/dst/layouts-docs.js",
-      "default": "./docs/dst/layouts-docs.modern.js"
+      "require": "./dst/index.cjs",
+      "default": "./dst/index.modern.js"
     }
+  },
+  "dependencies": {
+    "@carbonplan/components": "^11.0.6",
+    "@carbonplan/icons": "^1.1.0"
   },
   "peerDependencies": {
     "react": "^16.14.0 || ^17.0.2",
@@ -50,7 +51,7 @@
   },
   "devDependencies": {
     "microbundle": "^0.14.0",
-    "prettier": "2.2.1",
+    "prettier": "2.5.0",
     "rimraf": "2.6.3",
     "npm-run-all": "^4.0.0"
   }
