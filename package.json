@@ -25,14 +25,7 @@
     "README.md",
     "package.json"
   ],
-  "prettier": {
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true,
-    "printWidth": 80,
-    "quoteProps": "as-needed",
-    "jsxSingleQuote": true
-  },
+  "prettier": "@carbonplan/prettier",
   "homepage": "https://github.com/carbonplan/layouts#readme",
   "exports": {
     ".": {
@@ -40,9 +33,11 @@
       "default": "./dst/index.modern.js"
     }
   },
+  "prettier": "@carbonplan/prettier",
   "dependencies": {
     "@carbonplan/components": "^11.0.6",
-    "@carbonplan/icons": "^1.1.0"
+    "@carbonplan/icons": "^1.1.0",
+    "@carbonplan/prettier": "^1.0.0"
   },
   "peerDependencies": {
     "react": "^16.14.0 || ^17.0.2",
@@ -50,9 +45,10 @@
     "theme-ui": ">=0.11.0"
   },
   "devDependencies": {
+    "@carbonplan/prettier": "^1.2.0",
     "microbundle": "^0.14.0",
+    "npm-run-all": "^4.0.0",
     "prettier": "2.5.0",
-    "rimraf": "2.6.3",
-    "npm-run-all": "^4.0.0"
+    "rimraf": "2.6.3"
   }
 }
