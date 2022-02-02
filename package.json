@@ -1,6 +1,6 @@
 {
   "name": "@carbonplan/layouts",
-  "version": "1.0.0-develop.22",
+  "version": "1.0.0-develop.23",
   "description": "page layout components for reusable content",
   "type": "module",
   "main": "dst/index.cjs",
@@ -19,11 +19,7 @@
     "url": "https://github.com/carbonplan/layouts/issues"
   },
   "files": [
-    "pubs/dst",
-    "docs/dst",
-    "dst",
-    "README.md",
-    "package.json"
+    "dst"
   ],
   "prettier": "@carbonplan/prettier",
   "homepage": "https://github.com/carbonplan/layouts#readme",
