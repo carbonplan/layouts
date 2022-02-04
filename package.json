@@ -7,7 +7,8 @@
   "module": "dst/index.module.js",
   "source": "src/index.js",
   "scripts": {
-    "build": "rimraf dst && microbundle build --jsx React.createElement --jsxFragment React.Fragment -f modern,es,cjs"
+    "build": "rimraf dst && microbundle build --jsx React.createElement --jsxFragment React.Fragment -f modern,es,cjs",
+    "watch": "rimraf dst && microbundle watch --jsx React.createElement --jsxFragment React.Fragment -f modern,es,cjs"
   },
   "repository": {
     "type": "git",
@@ -31,11 +32,10 @@
   },
   "prettier": "@carbonplan/prettier",
   "dependencies": {
-    "@carbonplan/components": "^11.0.6",
-    "@carbonplan/icons": "^1.1.0",
-    "@carbonplan/prettier": "^1.0.0"
+    "@carbonplan/icons": "^1.1.0"
   },
   "peerDependencies": {
+    "@carbonplan/components": "^11.0.6",
     "react": "^16.14.0 || ^17.0.2",
     "react-dom": "^16.14.0 || ^17.0.2",
     "theme-ui": ">=0.11.0"

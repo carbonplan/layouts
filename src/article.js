@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, Container } from 'theme-ui'
+import { Box, Text, Container, Themed } from 'theme-ui'
 import { Layout, Row, Column, Button, formatDate } from '@carbonplan/components'
 import { Left } from '@carbonplan/icons'
 import { ReferencesProvider } from './references'
