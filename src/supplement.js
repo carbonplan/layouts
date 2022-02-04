@@ -1,10 +1,16 @@
 import React from 'react'
 import { Box } from 'theme-ui'
-import { Layout, Row, Column, Button, formatDate } from '@carbonplan/components'
+import {
+  Layout,
+  Row,
+  Column,
+  Button,
+  SectionDivider,
+  formatDate,
+} from '@carbonplan/components'
 import { Left } from '@carbonplan/icons'
 import QuickLook from './quick-look'
 import ReadMore from './read-more'
-import SectionDivider from './section-divider'
 
 const prefix = 'https://images.carbonplan.org'
 

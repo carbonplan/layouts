@@ -1,6 +1,13 @@
 import React from 'react'
 import { Box, Text, Container, Themed } from 'theme-ui'
-import { Layout, Row, Column, Button, formatDate } from '@carbonplan/components'
+import {
+  Layout,
+  Row,
+  Column,
+  Button,
+  SectionDivider,
+  formatDate,
+} from '@carbonplan/components'
 import { Left } from '@carbonplan/icons'
 import { ReferencesProvider } from './references'
 import QuickLook from './quick-look'
