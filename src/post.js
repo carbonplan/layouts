@@ -1,13 +1,6 @@
 import React from 'react'
 import { Box, Text } from 'theme-ui'
-import {
-  Button,
-  Column,
-  Row,
-  Layout,
-  SectionDivider,
-  formatDate,
-} from '@carbonplan/components'
+import { Button, Column, Row, Layout, formatDate } from '@carbonplan/components'
 import { Left } from '@carbonplan/icons'
 import AuthorIcons from './author-icons'
 import ReadMore from './read-more'
@@ -138,7 +131,7 @@ const Post = ({ children, meta, number }) => {
         </Column>
         <Column start={[1, 2, 5, 5]} width={[6, 6, 6, 6]}>
           <Box as='article'>{children}</Box>
-          <SectionDivider />
+          <Divider sx={{ mt: [6, 6, 7, 7] }} />
           <ReadMore target='blog' />
         </Column>
       </Row>

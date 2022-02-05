@@ -1,27 +1,39 @@
 import React from 'react'
-import { Box, Text, Container, Themed } from 'theme-ui'
+import { Box, Text, Container, Divider, Themed } from 'theme-ui'
 import {
   Layout,
   Row,
   Column,
   Button,
-  SectionDivider,
+  LinkGroup,
   formatDate,
 } from '@carbonplan/components'
 import { Left } from '@carbonplan/icons'
 import { ReferencesProvider } from './references'
 import QuickLook from './quick-look'
 import ReadMore from './read-more'
-import SectionDivider from './section-divider'
 
 const prefix = 'https://images.carbonplan.org'
 
 const Article = ({ children, meta, references }) => {
+  let headTitle
+  if (typeof meta.title === 'object') {
+    console.log(meta.title.props.children)
+    headTitle = meta.title.props.children
+      .filter((d) => typeof d === 'string')
+      .join(' ')
+      .toLowerCase()
+  } else if (typeof meta.title === 'string') {
+    headTitle = meta.title.toLowerCase()
+  } else {
+    headTitle = 'research article'
+  }
+
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
       description={meta.quickLook + '.'}
-      title={meta.title.toLowerCase() + ' / research / carbonplan'}
+      title={headTitle + ' / research / carbonplan'}
       links={'local'}
       metadata={'scroll'}
       nav={'research'}
@@ -232,9 +244,19 @@ const Article = ({ children, meta, references }) => {
               </Column>
             </Row>
             <ReferencesProvider color={meta.color} references={references}>
-              <Box as='article'>{children}</Box>
+              <Box as='article'>
+                <Themed.h1>{meta.title}</Themed.h1>
+                {meta.links && (
+                  <LinkGroup
+                    color={meta.color}
+                    members={meta.links}
+                    sx={{ mb: [5], mt: [6, -2, -2, -2] }}
+                  />
+                )}
+                {children}
+              </Box>
             </ReferencesProvider>
-            <SectionDivider />
+            <Divider sx={{ mt: [6, 6, 7, 7] }} />
             <ReadMore target='research' />
           </Column>
           <QuickLook color={meta.color} start={9}>

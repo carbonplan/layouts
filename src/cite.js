@@ -19,7 +19,7 @@ const Wrapper = ({ url, children, sx }) => {
   }
 }
 
-const CiteInner = ({ id, data, hide = false }) => {
+const CiteInner = ({ id, data, hide = false, sx, sxReference, sxLabel }) => {
   const { references, color } = useReferences()
   if (!Object.keys(references).includes(id)) {
     throw Error(`referencee ${id} not found`)
@@ -42,7 +42,7 @@ const CiteInner = ({ id, data, hide = false }) => {
   }
 
   return (
-    <Box as='span' sx={{ userSelect: 'none' }}>
+    <Box as='span' sx={{ userSelect: 'none', ...sx }}>
       <Box
         as='span'
         onMouseOver={toggleOn}
@@ -54,6 +54,7 @@ const CiteInner = ({ id, data, hide = false }) => {
           color: color,
           transition: 'color 0.2s ease-in-out',
           display: hide ? 'none' : 'initial',
+          ...sxLabel,
         }}
       >
         <sup>{data.number}</sup>
@@ -86,6 +87,7 @@ const CiteInner = ({ id, data, hide = false }) => {
             'initial',
             'initial',
           ],
+          ...sxReference,
         }}
       >
         <Box as='span' onMouseOver={toggleOn} onMouseOut={toggleOff}>
@@ -159,7 +161,7 @@ const CiteSeparator = ({ sep = ',' }) => {
   )
 }
 
-const Cite = ({ id, ids }) => {
+const Cite = ({ id, ids, ...props }) => {
   const { references, color } = useReferences()
 
   if (!id && !ids) {
@@ -171,7 +173,7 @@ const Cite = ({ id, ids }) => {
   }
 
   if (id) {
-    return <CiteInner id={id} />
+    return <CiteInner id={id} {...props} />
   }
 
   const count = ids.length
@@ -179,34 +181,34 @@ const Cite = ({ id, ids }) => {
   if (count === 0) {
     throw Error('array of ids is empty')
   } else if (count === 1) {
-    return <CiteInner id={ids[0]} />
+    return <CiteInner id={ids[0]} {...props} />
   } else if (count === 2) {
     return (
       <>
-        <CiteInner id={ids[0]} />
+        <CiteInner id={ids[0]} {...props} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[1]} />
+        <CiteInner id={ids[1]} {...props} />
       </>
     )
   } else if (count === 3) {
     return (
       <>
-        <CiteInner id={ids[0]} />
+        <CiteInner id={ids[0]} {...props} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[1]} />
+        <CiteInner id={ids[1]} {...props} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[2]} />
+        <CiteInner id={ids[2]} {...props} />
       </>
     )
   } else {
     return (
       <>
-        <CiteInner id={ids[0]} />
+        <CiteInner id={ids[0]} {...props} />
         {ids.slice(1, count - 1).map((d, i) => (
-          <CiteInner key={i} id={d} hide />
+          <CiteInner key={i} id={d} hide {...props} />
         ))}
         <CiteSeparator sep='-' />
-        <CiteInner id={ids[count - 1]} />
+        <CiteInner id={ids[count - 1]} {...props} />
       </>
     )
   }

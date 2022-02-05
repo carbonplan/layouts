@@ -1,13 +1,6 @@
 import React from 'react'
-import { Box } from 'theme-ui'
-import {
-  Layout,
-  Row,
-  Column,
-  Button,
-  SectionDivider,
-  formatDate,
-} from '@carbonplan/components'
+import { Box, Divider } from 'theme-ui'
+import { Layout, Row, Column, Button, formatDate } from '@carbonplan/components'
 import { Left } from '@carbonplan/icons'
 import QuickLook from './quick-look'
 import ReadMore from './read-more'
@@ -59,7 +52,7 @@ const Supplement = ({ children, meta }) => {
         </Column>
         <Column start={[1, 2, 3, 3]} width={[6, 6, 6, 6]}>
           <Box as='article'>{children}</Box>
-          <SectionDivider />
+          <Divider sx={{ mt: [6, 6, 7, 7] }} />
           <ReadMore target='research' />
         </Column>
         <Column
