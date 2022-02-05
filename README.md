@@ -21,7 +21,7 @@ _pre release_
 [mit license]: https://badgen.net/badge/license/MIT/blue
 [npm version]: https://badgen.net/npm/v/@carbonplan/layouts
 
-Reusable [`react`](https://github.com/facebook/react) components for common layouts, such as those used in our articles, tools, blog posts, and maps. Similar to those in the [`@carbonplan/components`](https://github.com/carbonplan/components) package, these components assume and make extensive use of [`theme-ui`](https://github.com/system-ui/theme-ui) and [`next`](https://github.com/vercel/next.js), and are meant to be composed with our [`theme`](https://github.com/carbonplan/theme). These components also work particularly well with MDX, which we use for authoring lots of our content.
+Reusable [`react`](https://github.com/facebook/react) components for common layouts, such as those used in our articles, tools, blog posts, and maps. All the components here either wrap the base `Layout` from `@carbonplan/components` directly, or are linked in their design constraints to one of the layouts in this package that do so. Similar to those in the [`@carbonplan/components`](https://github.com/carbonplan/components) package, these components assume and make extensive use of [`theme-ui`](https://github.com/system-ui/theme-ui) and [`next`](https://github.com/vercel/next.js), and are meant to be composed with our [`theme`](https://github.com/carbonplan/theme). These components also work particularly well with MDX, which we use for authoring lots of our content.
 
 ## usage
 
@@ -43,9 +43,9 @@ The easiest way to understand these components is to see them in use across our 
 
 ## api
 
-Several of these components are wrappers for the [`Layout`](https://github.com/carbonplan/components/blob/main/src/layout.js) component that we generally use as the top-level component for our pages. As such, they are also intended to act as top-level page components. In particular, `Article` `Supplement` `Post` `Tool` and `NavSection` all play this role.
+Most of these components are wrappers for the [`Layout`](https://github.com/carbonplan/components/blob/main/src/layout.js) component that we generally use as the top-level component for our pages. As such, they are also intended to act as top-level page components. In particular, `Article` `Supplement` `Post` `Tool` and `NavSection` all play this role.
 
-The remaining components are either elements of those layouts that might also be useful on their own, like `QuickLook` or `NavMenu`, or components that we tend to use only in the context of these layouts, like the `SectionDivider` within an `Article` or the `FigureCaption` that we use within an `Article` or `Post`.
+The remaining components are either elements of those layouts that might sometimes be useful on their own, llike `NavMenu`, or components that se only in the context of these layouts and are linked via specifid design constraints, like the use of `Cite` and `PullQuote` within an `Article`.
 
 Here are all the components currently available, grouped by where we tend to use them (some components appear in multiple groups):
 
@@ -53,26 +53,17 @@ Here are all the components currently available, grouped by where we tend to use
 
 `Article`
 `Supplement`
-`QuickLook`
-`FigureCaption`
-`Cite`
-`SectionDivider`
-`ExternalLinks`
 `Endnote`
+`Cite`
 `PullQuote`
-`ReadMore`
 
 ### interactive tools
 
 `Tool`
-`QuickLook`
 
 ### blog posts
 
 `Post`
-`AuthorIcons`
-`FigureCaption`
-`ReadMore`
 
 ### documentation sites
 
