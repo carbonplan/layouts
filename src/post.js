@@ -1,8 +1,14 @@
 import React from 'react'
-import { Box, Text } from 'theme-ui'
-import { Button, Column, Row, Layout, formatDate } from '@carbonplan/components'
+import { Box, Text, Divider } from 'theme-ui'
+import {
+  Button,
+  Column,
+  Row,
+  Layout,
+  AvatarGroup,
+  formatDate,
+} from '@carbonplan/components'
 import { Left } from '@carbonplan/icons'
-import AuthorIcons from './author-icons'
 import ReadMore from './read-more'
 
 const prefix = 'https://images.carbonplan.org'
@@ -16,7 +22,7 @@ const Authors = ({ authors }) => {
           fontFamily: 'mono',
           letterSpacing: 'mono',
           textTransform: 'uppercase',
-          fontSize: [2],
+          fontSize: [2, 2, 2, 3],
         }}
       >
         by
@@ -27,7 +33,7 @@ const Authors = ({ authors }) => {
           fontFamily: 'mono',
           letterSpacing: 'mono',
           textTransform: 'uppercase',
-          fontSize: [2],
+          fontSize: [2, 2, 2, 3],
         }}
       >
         {authors.map((author, ix) => (
@@ -38,7 +44,7 @@ const Authors = ({ authors }) => {
               mr: [2],
               fontFamily: 'mono',
               letterSpacing: 'mono',
-              fontSize: [2],
+              fontSize: [2, 2, 2, 3],
             }}
           >
             {author.replace(/ /g, '\u00a0')}
@@ -52,6 +58,11 @@ const Authors = ({ authors }) => {
 }
 
 const Post = ({ children, meta, number }) => {
+  const colors = ['red', 'orange', 'yellow', 'pink']
+  const avatars = meta.authors.map((d, i) => {
+    return { name: d, color: colors[(number + i) % 4] }
+  })
+
   return (
     <Layout
       card={
@@ -72,7 +83,7 @@ const Post = ({ children, meta, number }) => {
             size='xs'
             href='/blog'
             prefix={<Left />}
-            sx={{ ml: ['-2px', '-2px', '-2px', '-2px'] }}
+            sx={{ ml: ['-2px', '-2px', '-2px', '-2px'], mt: [0, 0, 0, '2px'] }}
           >
             Back
           </Button>
@@ -91,7 +102,7 @@ const Post = ({ children, meta, number }) => {
               letterSpacing: 'mono',
               textTransform: 'uppercase',
               color: 'secondary',
-              fontSize: [2],
+              fontSize: [2, 2, 2, 3],
             }}
           >
             {formatDate(meta.date, {
@@ -122,9 +133,17 @@ const Post = ({ children, meta, number }) => {
                 sx={{
                   pl: [meta.authors.length > 2 ? 4 : 0, 0, 0, 0],
                   mt: [-1, -1, 0, 0],
+                  mb: [0, 4, 0, 0],
                 }}
               >
-                <AuthorIcons authors={meta.authors} articleNumber={number} />
+                <AvatarGroup
+                  members={avatars}
+                  fixedCount={3}
+                  spacing={[1, 2, 2, 3]}
+                  maxWidth='125px'
+                  align={['right', 'left', 'left', 'left']}
+                  width={['90%', '90%', '100%', '100%']}
+                />
               </Column>
             </Row>
           </Box>

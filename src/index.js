@@ -1,5 +1,4 @@
 export { default as Article } from './article'
-export { default as AuthorIcons } from './author-icons'
 export { default as Cite } from './cite'
 export { default as Endnote } from './endnote'
 export { default as NavSection } from './nav-section'

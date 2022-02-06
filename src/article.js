@@ -15,25 +15,12 @@ import ReadMore from './read-more'
 
 const prefix = 'https://images.carbonplan.org'
 
-const Article = ({ children, meta, references }) => {
-  let headTitle
-  if (typeof meta.title === 'object') {
-    console.log(meta.title.props.children)
-    headTitle = meta.title.props.children
-      .filter((d) => typeof d === 'string')
-      .join(' ')
-      .toLowerCase()
-  } else if (typeof meta.title === 'string') {
-    headTitle = meta.title.toLowerCase()
-  } else {
-    headTitle = 'research article'
-  }
-
+const Article = ({ children, meta, references, title }) => {
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
       description={meta.quickLook + '.'}
-      title={headTitle + ' / research / carbonplan'}
+      title={meta.title.toLowerCase() + ' / research / carbonplan'}
       links={'local'}
       metadata={'scroll'}
       nav={'research'}
@@ -245,7 +232,7 @@ const Article = ({ children, meta, references }) => {
             </Row>
             <ReferencesProvider color={meta.color} references={references}>
               <Box as='article'>
-                <Themed.h1>{meta.title}</Themed.h1>
+                <Themed.h1>{title || meta.title}</Themed.h1>
                 {meta.links && (
                   <LinkGroup
                     color={meta.color}
