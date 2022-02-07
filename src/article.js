@@ -15,7 +15,7 @@ import ReadMore from './read-more'
 
 const prefix = 'https://images.carbonplan.org'
 
-const Article = ({ children, meta, references, title }) => {
+const Article = ({ children, meta, references, displayTitle }) => {
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
@@ -232,7 +232,7 @@ const Article = ({ children, meta, references, title }) => {
             </Row>
             <ReferencesProvider color={meta.color} references={references}>
               <Box as='article'>
-                <Themed.h1>{title || meta.title}</Themed.h1>
+                <Themed.h1>{displayTitle || meta.title}</Themed.h1>
                 {meta.links && (
                   <LinkGroup
                     color={meta.color}
