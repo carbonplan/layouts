@@ -130,17 +130,15 @@ const Post = ({ children, meta, number }) => {
       <Row>
         <Column start={[1, 2, 2, 2]} width={[6, 6, 2, 2]}>
           <Box sx={{ mt: [0, 0, '20px', '32px'] }}>
-            <Row columns={[6, 6, 2, 2]}>
-              <Column
-                start={[1]}
-                width={[3, 3, 2, 2]}
-                sx={{
-                  mb: [3],
-                  '@media print': {
-                    mb: [6],
-                  },
-                }}
-              >
+            <Row
+              columns={[6, 6, 2, 2]}
+              sx={{
+                '@media print': {
+                  mb: [5],
+                },
+              }}
+            >
+              <Column start={[1]} width={[3, 3, 2, 2]} sx={{ mb: [3] }}>
                 <Authors authors={meta.authors} />
               </Column>
               <Column
