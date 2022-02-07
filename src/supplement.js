@@ -16,6 +16,7 @@ const Supplement = ({ children, meta }) => {
       links={'local'}
       metadata={'scroll'}
       nav={'research'}
+      printable={true}
     >
       <Row>
         <Column

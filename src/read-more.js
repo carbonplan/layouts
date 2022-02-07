@@ -4,7 +4,11 @@ import { Row, Column, Callout } from '@carbonplan/components'
 
 const ReadMore = ({ children, target = 'research' }) => {
   return (
-    <Row as='section' columns={[6]} sx={{ mt: [6, 6, 7, 8] }}>
+    <Row
+      as='section'
+      columns={[6]}
+      sx={{ mt: [6, 6, 7, 8], '@media print': { display: 'none' } }}
+    >
       <Column start={[1]} width={[3, 3, 3, 3]}>
         <Callout href='mailto:hello@carbonplan.org' label={'email us'}>
           Questions? Interested in collaborating on these problems?

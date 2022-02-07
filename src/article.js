@@ -24,6 +24,7 @@ const Article = ({ children, meta, references, displayTitle }) => {
       links={'local'}
       metadata={'scroll'}
       nav={'research'}
+      printable={true}
     >
       <Box
         sx={{
@@ -150,7 +151,12 @@ const Article = ({ children, meta, references, displayTitle }) => {
               size='xs'
               href='/research'
               prefix={<Left />}
-              sx={{ ml: ['-2px', '-2px', '-2px', '-2px'] }}
+              sx={{
+                ml: ['-2px', '-2px', '-2px', '-2px'],
+                '@media print': {
+                  display: 'none',
+                },
+              }}
             >
               Back
             </Button>
@@ -243,7 +249,9 @@ const Article = ({ children, meta, references, displayTitle }) => {
                 {children}
               </Box>
             </ReferencesProvider>
-            <Divider sx={{ mt: [6, 6, 7, 7] }} />
+            <Divider
+              sx={{ mt: [6, 6, 7, 7], '@media print': { display: 'none' } }}
+            />
             <ReadMore target='research' />
           </Column>
           <QuickLook color={meta.color} start={9}>

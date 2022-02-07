@@ -75,6 +75,7 @@ const Post = ({ children, meta, number }) => {
       links={'local'}
       metadata={'scroll'}
       container={true}
+      printable={true}
     >
       <Row sx={{ mt: [4, 6, 7, 8] }}>
         <Column start={[1, 2, 2, 2]} width={[2, 1, 2, 2]}>
@@ -83,7 +84,13 @@ const Post = ({ children, meta, number }) => {
             size='xs'
             href='/blog'
             prefix={<Left />}
-            sx={{ ml: ['-2px', '-2px', '-2px', '-2px'], mt: [0, 0, 0, '2px'] }}
+            sx={{
+              ml: ['-2px', '-2px', '-2px', '-2px'],
+              mt: [0, 0, 0, '2px'],
+              '@media print': {
+                display: 'none',
+              },
+            }}
           >
             Back
           </Button>
@@ -124,7 +131,16 @@ const Post = ({ children, meta, number }) => {
         <Column start={[1, 2, 2, 2]} width={[6, 6, 2, 2]}>
           <Box sx={{ mt: [0, 0, '20px', '32px'] }}>
             <Row columns={[6, 6, 2, 2]}>
-              <Column start={[1]} width={[3, 3, 2, 2]} sx={{ mb: [3] }}>
+              <Column
+                start={[1]}
+                width={[3, 3, 2, 2]}
+                sx={{
+                  mb: [3],
+                  '@media print': {
+                    mb: [6],
+                  },
+                }}
+              >
                 <Authors authors={meta.authors} />
               </Column>
               <Column
@@ -150,7 +166,9 @@ const Post = ({ children, meta, number }) => {
         </Column>
         <Column start={[1, 2, 5, 5]} width={[6, 6, 6, 6]}>
           <Box as='article'>{children}</Box>
-          <Divider sx={{ mt: [6, 6, 7, 7] }} />
+          <Divider
+            sx={{ mt: [6, 6, 7, 7], '@media print': { display: 'none' } }}
+          />
           <ReadMore target='blog' />
         </Column>
       </Row>
