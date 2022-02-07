@@ -7,12 +7,12 @@ import QuickLook from './quick-look'
 const prefix = 'https://images.carbonplan.org'
 
 const Tool = ({
-  title,
   description,
   meta,
   contentWidth = [6, 10],
   descriptionWidth = [6, 6, 6, 6],
   quickLookStart = 8,
+  displayTitle,
   children,
 }) => {
   return (
@@ -47,7 +47,7 @@ const Tool = ({
         <Column start={[1, 2]} width={descriptionWidth}>
           <Box sx={{}}>
             <Box as='h1' variant='styles.h1' sx={{ mt: [5, 7, 7, 8] }}>
-              {title}
+              {displayTitle || meta.title}
             </Box>
             <Box sx={{ mb: [0, 0, 4], mt: [0, 0, 5, 6] }}>
               <Themed.p>{description}</Themed.p>
