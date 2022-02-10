@@ -12,7 +12,7 @@ const Supplement = ({ children, meta }) => {
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
       description={meta.quickLook + '.'}
-      title={meta.title.toLowerCase() + ' / research / carbonplan'}
+      title={meta.title + ' – CarbonPlan'}
       links={'local'}
       metadata={'scroll'}
       nav={'research'}

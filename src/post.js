@@ -71,7 +71,7 @@ const Post = ({ children, meta, number }) => {
           : 'https://images.carbonplan.org/social/blog.png'
       }
       description={meta.summary}
-      title={meta.title.toLowerCase() + ' / blog / carbonplan'}
+      title={meta.title + ' – CarbonPlan'}
       links={'local'}
       metadata={'scroll'}
       container={true}
