@@ -19,7 +19,7 @@ const Article = ({ children, meta, references, displayTitle }) => {
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
-      description={meta.summary}
+      description={meta.quickLook + '.'}
       title={meta.title + ' – CarbonPlan'}
       links={'local'}
       metadata={'scroll'}
