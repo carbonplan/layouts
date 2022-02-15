@@ -1,5 +1,7 @@
 export { default as Article } from './article'
 export { default as Cite } from './cite'
+export { default as SidePanel } from './side-panel'
+export { default as SidePanelFooter } from './side-panel-footer'
 export { default as Endnote } from './endnote'
 export { default as NavSection } from './nav-section'
 export { default as NavMenu } from './nav-menu'
