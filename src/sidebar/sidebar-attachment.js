@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from 'theme-ui'
 
-const SidePanelAttachment = ({ children, expanded, side, width, sx }) => {
+const SidebarAttachment = ({ children, expanded, side, width, sx }) => {
   return (
     <Box
       sx={{
@@ -24,4 +24,4 @@ const SidePanelAttachment = ({ children, expanded, side, width, sx }) => {
   )
 }
 
-export default SidePanelAttachment
+export default SidebarAttachment

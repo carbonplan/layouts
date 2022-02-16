@@ -1,12 +1,12 @@
 import React from 'react'
 import { Box } from 'theme-ui'
 import { alpha } from '@theme-ui/color'
-import SidePanelDivider from './side-panel-divider'
+import SidebarDivider from './sidebar-divider'
 
-const SidePanelFooter = ({ children, sx, ...props }) => {
+const SidebarFooter = ({ children, sx, ...props }) => {
   return (
     <>
-      <SidePanelDivider sx={{ my: [0] }} />
+      <SidebarDivider sx={{ my: [0] }} />
 
       <Box
         sx={{
@@ -28,4 +28,4 @@ const SidePanelFooter = ({ children, sx, ...props }) => {
   )
 }
 
-export default SidePanelFooter
+export default SidebarFooter

@@ -3,8 +3,9 @@ import { Box, Flex } from 'theme-ui'
 import { Button, Row, Column } from '@carbonplan/components'
 import { ArrowThin } from '@carbonplan/icons'
 
-import SidePanelAttachment from './side-panel-attachment'
-const SidePanel = ({
+import SidebarAttachment from './sidebar-attachment'
+
+const Sidebar = ({
   children,
   tooltip,
   onClose,
@@ -55,7 +56,7 @@ const SidePanel = ({
 
   return (
     <>
-      <SidePanelAttachment
+      <SidebarAttachment
         width={width}
         side={side}
         expanded={expanded}
@@ -74,7 +75,7 @@ const SidePanel = ({
         >
           {expanded ? null : tooltip}
         </Button>
-      </SidePanelAttachment>
+      </SidebarAttachment>
       <Row>
         <Column width={width} start={1}>
           <Box
@@ -184,4 +185,4 @@ const SidePanel = ({
   )
 }
 
-export default SidePanel
+export default Sidebar

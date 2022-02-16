@@ -1,7 +1,7 @@
 import React from 'react'
 import { Divider } from 'theme-ui'
 
-const SidePanelDivider = ({ sx }) => {
+const SidebarDivider = ({ sx }) => {
   return (
     <Divider
       sx={{
@@ -18,4 +18,4 @@ const SidePanelDivider = ({ sx }) => {
   )
 }
 
-export default SidePanelDivider
+export default SidebarDivider
