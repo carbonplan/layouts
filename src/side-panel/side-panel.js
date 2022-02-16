@@ -5,7 +5,6 @@ import { ArrowThin } from '@carbonplan/icons'
 
 import SidePanelAttachment from './side-panel-attachment'
 const SidePanel = ({
-  attachment,
   children,
   tooltip,
   onClose,
