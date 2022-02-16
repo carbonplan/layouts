@@ -3,7 +3,9 @@ import { Box, Flex } from 'theme-ui'
 import { Button, Row, Column } from '@carbonplan/components'
 import { ArrowThin } from '@carbonplan/icons'
 
+import SidePanelAttachment from './side-panel-attachment'
 const SidePanel = ({
+  attachment,
   children,
   tooltip,
   onClose,
@@ -41,6 +43,7 @@ const SidePanel = ({
           strokeWidth: 2,
           width: 24,
           height: 24,
+          transition: 'transform 0.2s',
           transform:
             (expanded && side === 'left') || (!expanded && side === 'right')
               ? 'scaleX(-1)'
@@ -53,34 +56,26 @@ const SidePanel = ({
 
   return (
     <>
-      <Button
-        onClick={handleToggleExpanded}
-        prefix={side === 'left' ? icon : null}
-        suffix={side === 'right' ? icon : null}
-        size='sm'
-        sx={{
-          display: ['none', 'none', 'inline-block', 'inline-block'],
-          cursor: 'pointer',
-          color: 'primary',
-          position: 'absolute',
-          opacity: 1,
-          transition: `${side} 0.2s, transform 0.2s`,
-          [side]: expanded
-            ? [
-                `calc(${width} * 100vw / 6 - 12px)`,
-                `calc(${width} * 100vw / 8 - 18px)`,
-                `calc(${width} * 100vw / 12 + 37px)`,
-                `calc(${width} * 100vw / 12 + 54px)`,
-              ]
-            : '12px',
-          bottom: ['20px', '20px', '20px', '18px'],
-          zIndex: 1001,
-          pb: [2],
-          mb: [-2],
-        }}
+      <SidePanelAttachment
+        width={width}
+        side={side}
+        expanded={expanded}
+        sx={{ bottom: ['18px', '18px', '18px', '16px'] }}
       >
-        {expanded ? null : tooltip}
-      </Button>
+        <Button
+          onClick={handleToggleExpanded}
+          prefix={side === 'left' ? icon : null}
+          suffix={side === 'right' ? icon : null}
+          size='sm'
+          sx={{
+            display: ['none', 'none', 'inline-block', 'inline-block'],
+            cursor: 'pointer',
+            color: 'primary',
+          }}
+        >
+          {expanded ? null : tooltip}
+        </Button>
+      </SidePanelAttachment>
       <Row>
         <Column width={width} start={1}>
           <Box
