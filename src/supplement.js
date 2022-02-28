@@ -2,7 +2,6 @@ import React from 'react'
 import { Box, Divider } from 'theme-ui'
 import { Layout, Row, Column, Button, formatDate } from '@carbonplan/components'
 import { Left } from '@carbonplan/icons'
-import QuickLook from './quick-look'
 import ReadMore from './read-more'
 
 const prefix = 'https://images.carbonplan.org'
@@ -26,7 +25,7 @@ const Supplement = ({ children, meta }) => {
           sx={{ mb: [-2, -4, 0, 0], mt: [3, 4, '109px', '154px'] }}
         >
           <Button
-            href={meta.back}
+            onClick={() => window.history.back()}
             inverted
             size='xs'
             prefix={<Left />}

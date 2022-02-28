@@ -34,7 +34,7 @@ const Tool = ({
             sx={{ mb: [-2, -4, 0, 0], mt: [3, 4, '109px', '154px'] }}
           >
             <Button
-              href={'/research'}
+              onClick={() => window.history.back()}
               inverted
               size='xs'
               prefix={<Left />}
