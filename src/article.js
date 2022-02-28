@@ -149,7 +149,7 @@ const Article = ({ children, meta, references, displayTitle }) => {
             <Button
               inverted
               size='xs'
-              href='/research'
+              onClick={() => window.history.back()}
               prefix={<Left />}
               sx={{
                 ml: ['-2px', '-2px', '-2px', '-2px'],
