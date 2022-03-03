@@ -6,7 +6,7 @@ import ReadMore from './read-more'
 
 const prefix = 'https://images.carbonplan.org'
 
-const Supplement = ({ children, meta }) => {
+const Supplement = ({ back = '/research', children, meta }) => {
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
@@ -29,7 +29,7 @@ const Supplement = ({ children, meta }) => {
               if (window.history.state?.idx) {
                 window.history.back()
               } else {
-                window.location.href = meta.back || '/research'
+                window.location.href = back
               }
             }}
             inverted

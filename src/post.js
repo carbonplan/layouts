@@ -57,7 +57,7 @@ const Authors = ({ authors }) => {
   )
 }
 
-const Post = ({ children, meta, number }) => {
+const Post = ({ back = '/blog', children, meta, number }) => {
   const colors = ['red', 'orange', 'yellow', 'pink']
   const avatars = meta.authors.map((d, i) => {
     return { name: d, color: colors[(number + i) % 4] }
@@ -86,7 +86,7 @@ const Post = ({ children, meta, number }) => {
               if (window.history.state?.idx) {
                 window.history.back()
               } else {
-                window.location.href = '/blog'
+                window.location.href = back
               }
             }}
             prefix={<Left />}

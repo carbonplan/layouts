@@ -15,7 +15,13 @@ import ReadMore from './read-more'
 
 const prefix = 'https://images.carbonplan.org'
 
-const Article = ({ children, meta, references, displayTitle }) => {
+const Article = ({
+  back = '/research',
+  children,
+  meta,
+  references,
+  displayTitle,
+}) => {
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
@@ -153,7 +159,7 @@ const Article = ({ children, meta, references, displayTitle }) => {
                 if (window.history.state?.idx) {
                   window.history.back()
                 } else {
-                  window.location.href = '/research'
+                  window.location.href = back
                 }
               }}
               prefix={<Left />}

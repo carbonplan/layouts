@@ -7,6 +7,7 @@ import QuickLook from './quick-look'
 const prefix = 'https://images.carbonplan.org'
 
 const Tool = ({
+  back = '/research',
   description,
   meta,
   contentWidth = [6, 10],
@@ -38,7 +39,7 @@ const Tool = ({
                 if (window.history.state?.idx) {
                   window.history.back()
                 } else {
-                  window.location.href = '/research'
+                  window.location.href = back
                 }
               }}
               inverted
