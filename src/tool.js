@@ -7,6 +7,7 @@ import QuickLook from './quick-look'
 const prefix = 'https://images.carbonplan.org'
 
 const Tool = ({
+  back = '/research',
   description,
   meta,
   contentWidth = [6, 10],
@@ -34,7 +35,13 @@ const Tool = ({
             sx={{ mb: [-2, -4, 0, 0], mt: [3, 4, '109px', '154px'] }}
           >
             <Button
-              onClick={() => window.history.back()}
+              onClick={() => {
+                if (window.history.state?.idx) {
+                  window.history.back()
+                } else {
+                  window.location.href = back
+                }
+              }}
               inverted
               size='xs'
               prefix={<Left />}

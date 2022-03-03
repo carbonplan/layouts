@@ -6,7 +6,7 @@ import ReadMore from './read-more'
 
 const prefix = 'https://images.carbonplan.org'
 
-const Supplement = ({ children, meta }) => {
+const Supplement = ({ back = '/research', children, meta }) => {
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
@@ -25,7 +25,13 @@ const Supplement = ({ children, meta }) => {
           sx={{ mb: [-2, -4, 0, 0], mt: [3, 4, '109px', '154px'] }}
         >
           <Button
-            onClick={() => window.history.back()}
+            onClick={() => {
+              if (window.history.state?.idx) {
+                window.history.back()
+              } else {
+                window.location.href = back
+              }
+            }}
             inverted
             size='xs'
             prefix={<Left />}
