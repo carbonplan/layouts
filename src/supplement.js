@@ -25,7 +25,13 @@ const Supplement = ({ children, meta }) => {
           sx={{ mb: [-2, -4, 0, 0], mt: [3, 4, '109px', '154px'] }}
         >
           <Button
-            onClick={() => window.history.back()}
+            onClick={() => {
+              if (window.history.state?.idx) {
+                window.history.back()
+              } else {
+                window.location.href = meta.back || '/research'
+              }
+            }}
             inverted
             size='xs'
             prefix={<Left />}

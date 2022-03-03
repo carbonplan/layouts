@@ -82,7 +82,13 @@ const Post = ({ children, meta, number }) => {
           <Button
             inverted
             size='xs'
-            onClick={() => window.history.back()}
+            onClick={() => {
+              if (window.history.state?.idx) {
+                window.history.back()
+              } else {
+                window.location.href = '/blog'
+              }
+            }}
             prefix={<Left />}
             sx={{
               ml: ['-2px', '-2px', '-2px', '-2px'],
