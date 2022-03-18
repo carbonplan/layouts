@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from 'theme-ui'
-import { Link } from '@carbonplan/components'
+import { Link, useScrollbarClass } from '@carbonplan/components'
 
 const NavMenu = ({
   active,
@@ -10,6 +10,8 @@ const NavMenu = ({
   index = true,
   indexLabel = 'Intro',
 }) => {
+  const className = useScrollbarClass()
+
   return (
     <>
       <Box
@@ -28,6 +30,7 @@ const NavMenu = ({
         }}
       />
       <Box
+        className={className}
         sx={{
           fontSize: [3, 3, 3, 4],
           mb: [8, 8, 9, 10],
