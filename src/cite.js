@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from 'theme-ui'
 import { useState } from 'react'
-import { useReferences } from './references'
+import { useReference, useReferences } from './references'
 
 const Wrapper = ({ url, children, sx }) => {
   if (url) {
@@ -20,12 +20,10 @@ const Wrapper = ({ url, children, sx }) => {
 }
 
 const CiteInner = ({ id, data, hide = false, sx, sxReference, sxLabel }) => {
-  const { references, color } = useReferences()
-  if (!Object.keys(references).includes(id)) {
-    throw Error(`referencee ${id} not found`)
-  }
-  data = references[id] || data
-  data.offset = data.offset || 0
+  const { reference, number, color } = useReference(id)
+  const { url, note, authors, year, title, journal, editors } =
+    reference || data
+
   const [selected, setSelected] = useState(false)
   const [selectedMobile, setSelectedMobile] = useState(false)
 
@@ -57,10 +55,10 @@ const CiteInner = ({ id, data, hide = false, sx, sxReference, sxLabel }) => {
           ...sxLabel,
         }}
       >
-        <sup>{data.number}</sup>
+        <sup>{number}</sup>
       </Box>
       <Wrapper
-        url={data.url}
+        url={url}
         sx={{
           float: ['none', 'none', 'right', 'right'],
           clear: ['none', 'none', 'right', 'right'],
@@ -118,7 +116,7 @@ const CiteInner = ({ id, data, hide = false, sx, sxReference, sxLabel }) => {
                 display: ['none', 'none', 'initial'],
               }}
             >
-              {data.number}
+              {number}
             </Box>
             <Box
               as='span'
@@ -130,10 +128,9 @@ const CiteInner = ({ id, data, hide = false, sx, sxReference, sxLabel }) => {
                 letterSpacing: '0.0125em',
               }}
             >
-              {data.note}
-              {data.authors} {data.year ? `(${data.year})` : ''} {data.title}{' '}
-              <i>{data.journal}</i>{' '}
-              {data.editors ? `edited by ${data.editors}` : ''}
+              {note}
+              {authors} {year ? `(${year})` : ''} {title} <i>{journal}</i>{' '}
+              {editors ? `edited by ${editors}` : ''}
             </Box>
           </Box>
         </Box>
@@ -162,8 +159,6 @@ const CiteSeparator = ({ sep = ',' }) => {
 }
 
 const Cite = ({ id, ids, ...props }) => {
-  const { references, color } = useReferences()
-
   if (!id && !ids) {
     throw Error('either id or ids must be specified')
   }
