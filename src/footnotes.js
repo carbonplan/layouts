@@ -34,11 +34,13 @@ export const Footnotes = () => {
   return (
     <Box sx={{ display: 'none', '@media print': { display: 'block' } }}>
       <Endnote label='Footnotes'>
-        <Group spacing={4}>
-          {Object.keys(numbers).map((id) => (
-            <Reference key={id} number={numbers[id]} id={id} />
-          ))}
-        </Group>
+        <Box variant='styles.p'>
+          <Group spacing={4}>
+            {Object.keys(numbers).map((id) => (
+              <Reference key={id} number={numbers[id]} id={id} />
+            ))}
+          </Group>
+        </Box>
       </Endnote>
     </Box>
   )
