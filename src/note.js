@@ -1,9 +1,9 @@
 import React from 'react'
-import { useReferenceNote } from './references'
+import { useNote } from './references'
 import InlineNote from './inline-note'
 
 const Note = ({ children, sxReference, sxLabel, ...props }) => {
-  const { number, color } = useReferenceNote(children)
+  const { number, color } = useNote(children)
 
   return (
     <InlineNote

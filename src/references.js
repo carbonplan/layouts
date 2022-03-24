@@ -16,10 +16,12 @@ export const useReference = (id) => {
   return { reference, number: getNumber(id), color }
 }
 
-export const useReferenceNote = (customNote) => {
-  const { color, numbers, getNumber } = useContext(References)
-  const { current: noteID } = useRef(Object.keys(numbers).length + 1)
-  const number = getNumber(noteID, { customNote })
+export const useNote = (customNote) => {
+  const { color, registerNote } = useContext(References)
+  const noteID = useRef()
+
+  const { number, id } = registerNote(noteID.current, customNote)
+  noteID.current = id
 
   return { color, number }
 }
@@ -33,20 +35,32 @@ export const ReferencesProvider = ({
   const { current: numbers } = useRef({})
 
   const getNumber = useCallback(
-    (id, data) => {
+    (id) => {
       if (!numbers[id]) {
         numbers[id] = Object.keys(numbers).length + 1
-        if (data) {
-          references[id] = data
-        }
       }
       return numbers[id]
     },
     [numbers]
   )
 
+  const registerNote = useCallback(
+    (id, note) => {
+      let noteID = id
+      if (!noteID) {
+        const number = Object.keys(numbers).length + 1
+        noteID = `note-${number}`
+      }
+      references[noteID] = { customNote: note }
+      return { id: noteID, number: getNumber(noteID) }
+    },
+    [numbers]
+  )
+
   return (
-    <References.Provider value={{ references, color, numbers, getNumber }}>
+    <References.Provider
+      value={{ references, color, numbers, getNumber, registerNote }}
+    >
       {children}
     </References.Provider>
   )
