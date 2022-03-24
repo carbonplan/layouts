@@ -2,8 +2,8 @@ import React from 'react'
 import { useNote } from './references'
 import InlineNote from './inline-note'
 
-const Note = ({ children, sxReference, sxLabel, ...props }) => {
-  const { number, color } = useNote(children)
+const Note = ({ children, url, sxReference, sxLabel, ...props }) => {
+  const { number, color } = useNote(children, url)
 
   return (
     <InlineNote
@@ -11,6 +11,7 @@ const Note = ({ children, sxReference, sxLabel, ...props }) => {
       sxNote={sxReference}
       sxLabel={sxLabel}
       color={color}
+      url={url}
       {...props}
     >
       {children}

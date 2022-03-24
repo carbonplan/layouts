@@ -16,11 +16,11 @@ export const useReference = (id) => {
   return { reference, number: getNumber(id), color }
 }
 
-export const useNote = (customNote) => {
+export const useNote = (customNote, url) => {
   const { color, registerNote } = useContext(References)
   const noteID = useRef()
 
-  const { number, id } = registerNote(noteID.current, customNote)
+  const { number, id } = registerNote(noteID.current, customNote, url)
   noteID.current = id
 
   return { color, number }
@@ -45,13 +45,13 @@ export const ReferencesProvider = ({
   )
 
   const registerNote = useCallback(
-    (id, note) => {
+    (id, note, url) => {
       let noteID = id
       if (!noteID) {
         const number = Object.keys(numbers).length + 1
         noteID = `note-${number}`
       }
-      references[noteID] = { customNote: note }
+      references[noteID] = { customNote: note, url }
       return { id: noteID, number: getNumber(noteID) }
     },
     [numbers]
