@@ -7,7 +7,8 @@ import { useReference, useReferences } from './references'
 
 const Reference = ({ number, id }) => {
   const { reference } = useReference(id)
-  const { url, note, authors, year, title, journal, editors } = reference
+  const { customNote, url, note, authors, year, title, journal, editors } =
+    reference
 
   return (
     <Box as={url ? 'a' : 'div'} href={url} sx={{ color: 'primary' }}>
@@ -16,9 +17,13 @@ const Reference = ({ number, id }) => {
           {number}
         </Box>
         <Box as='span'>
-          {note}
-          {authors} {year ? `(${year})` : ''} {title} <i>{journal}</i>{' '}
-          {editors ? `edited by ${editors}` : ''}
+          {customNote ?? (
+            <>
+              {note}
+              {authors} {year ? `(${year})` : ''} {title} <i>{journal}</i>{' '}
+              {editors ? `edited by ${editors}` : ''}
+            </>
+          )}
         </Box>
       </Box>
     </Box>
@@ -36,9 +41,11 @@ export const Footnotes = () => {
       <Endnote label='Footnotes'>
         <Box variant='styles.p'>
           <Group spacing={4}>
-            {Object.keys(numbers).map((id) => (
-              <Reference key={id} number={numbers[id]} id={id} />
-            ))}
+            {Object.keys(numbers)
+              .sort((a, b) => numbers[a] - numbers[b])
+              .map((id) => (
+                <Reference key={id} number={numbers[id]} id={id} />
+              ))}
           </Group>
         </Box>
       </Endnote>
