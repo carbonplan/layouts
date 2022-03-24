@@ -29,7 +29,8 @@ const Reference = ({ number, id }) => {
     </Box>
   )
 }
-export const Footnotes = () => {
+
+export const PrintedFootnotes = () => {
   const { numbers } = useReferences()
 
   if (Object.keys(numbers).length === 0) {
@@ -53,4 +54,4 @@ export const Footnotes = () => {
   )
 }
 
-export default Footnotes
+export default PrintedFootnotes
