@@ -1,9 +1,9 @@
 import React from 'react'
-import { useNote } from './references'
+import { useSidenote } from './references'
 import InlineNote from './inline-note'
 
-const Note = ({ children, url, sxReference, sxLabel, ...props }) => {
-  const { number, color } = useNote(children, url)
+const Sidenote = ({ children, url, sxReference, sxLabel, ...props }) => {
+  const { number, color } = useSidenote(children, url)
 
   return (
     <InlineNote
@@ -19,4 +19,4 @@ const Note = ({ children, url, sxReference, sxLabel, ...props }) => {
   )
 }
 
-export default Note
+export default Sidenote

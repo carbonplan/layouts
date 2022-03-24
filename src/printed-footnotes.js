@@ -7,7 +7,7 @@ import { useReference, useReferences } from './references'
 
 const Reference = ({ number, id }) => {
   const { reference } = useReference(id)
-  const { customNote, url, note, authors, year, title, journal, editors } =
+  const { sidenote, url, note, authors, year, title, journal, editors } =
     reference
 
   return (
@@ -17,7 +17,7 @@ const Reference = ({ number, id }) => {
           {number}
         </Box>
         <Box as='span'>
-          {customNote ?? (
+          {sidenote ?? (
             <>
               {note}
               {authors} {year ? `(${year})` : ''} {title} <i>{journal}</i>{' '}
