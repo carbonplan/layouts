@@ -3,6 +3,21 @@ import { Box } from 'theme-ui'
 import { useReference, useReferences } from './references'
 import InlineNote from './inline-note'
 
+const sx = {
+  mobile: {
+    display: ['initial', 'initial', 'none', 'none'],
+    '@media print': {
+      display: 'none',
+    },
+  },
+  desktop: {
+    display: ['none', 'none', 'initial', 'initial'],
+    '@media print': {
+      display: 'initial',
+    },
+  },
+}
+
 const CiteInner = ({ id, data, ...props }) => {
   const { reference, number, color } = useReference(id)
   const { url, note, authors, year, title, journal, editors } =
@@ -91,26 +106,17 @@ const Cite = ({ id, ids, ...props }) => {
         <CiteInner id={ids[0]} {...props} hide={hide[0]} />
         {ids.slice(1, count - 1).map((d, i) => (
           <Box as='span' key={d}>
-            <CiteSeparator
-              sep=','
-              sx={{ display: ['initial', 'initial', 'none', 'none'] }}
-            />
+            <CiteSeparator sep=',' sx={sx.mobile} />
             <CiteInner
               id={d}
-              sxLabel={{ display: ['initial', 'initial', 'none', 'none'] }}
+              sxLabel={sx.mobile}
               {...props}
               hide={hide[i + 1]}
             />
           </Box>
         ))}
-        <CiteSeparator
-          sep=','
-          sx={{ display: ['initial', 'initial', 'none', 'none'] }}
-        />
-        <CiteSeparator
-          sep='-'
-          sx={{ display: ['none', 'none', 'initial', 'initial'] }}
-        />
+        <CiteSeparator sep=',' sx={sx.mobile} />
+        <CiteSeparator sep='-' sx={sx.desktop} />
         <CiteInner id={ids[count - 1]} {...props} hide={hide[count - 1]} />
       </>
     )
