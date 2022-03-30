@@ -3,20 +3,13 @@ import { Box } from 'theme-ui'
 import { useReference, useReferences } from './references'
 import InlineNote from './inline-note'
 
-const CiteInner = ({ id, data, sxReference, sxLabel, ...props }) => {
+const CiteInner = ({ id, data, ...props }) => {
   const { reference, number, color } = useReference(id)
   const { url, note, authors, year, title, journal, editors } =
     reference || data
 
   return (
-    <InlineNote
-      number={number}
-      sxNote={sxReference}
-      sxLabel={sxLabel}
-      url={url}
-      color={color}
-      {...props}
-    >
+    <InlineNote number={number} url={url} color={color} {...props}>
       {note}
       {authors} {year ? `(${year})` : ''} {title} <i>{journal}</i>{' '}
       {editors ? `edited by ${editors}` : ''}
@@ -85,7 +78,7 @@ const Cite = ({ id, ids, ...props }) => {
       <>
         <CiteInner id={ids[0]} {...props} />
         {ids.slice(1, count - 1).map((d, i) => (
-          <CiteInner key={i} id={d} hide {...props} />
+          <CiteInner key={i} id={d} hideLabel {...props} />
         ))}
         <CiteSeparator sep='-' />
         <CiteInner id={ids[count - 1]} {...props} />

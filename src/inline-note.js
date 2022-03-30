@@ -23,9 +23,10 @@ const InlineNote = ({
   url,
   color,
   children,
-  hide = false,
+  hideLabel = false,
+  hideReference = false,
   sx,
-  sxNote,
+  sxReference,
   sxLabel,
 }) => {
   const [selected, setSelected] = useState(false)
@@ -55,7 +56,7 @@ const InlineNote = ({
           cursor: 'pointer',
           color: color,
           transition: 'color 0.2s ease-in-out',
-          display: hide ? 'none' : 'initial',
+          display: hideLabel ? 'none' : 'initial',
           ...sxLabel,
         }}
       >
@@ -83,13 +84,15 @@ const InlineNote = ({
           mb: [3, 3, 3, 4],
           verticalAlign: 'baseline',
           position: 'relative',
-          display: [
-            selectedMobile ? 'block' : 'none',
-            selectedMobile ? 'block' : 'none',
-            'initial',
-            'initial',
-          ],
-          ...sxNote,
+          display: hideReference
+            ? 'none'
+            : [
+                selectedMobile ? 'block' : 'none',
+                selectedMobile ? 'block' : 'none',
+                'initial',
+                'initial',
+              ],
+          ...sxReference,
         }}
       >
         <Box as='span' onMouseOver={toggleOn} onMouseOut={toggleOff}>

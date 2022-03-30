@@ -2,18 +2,11 @@ import React from 'react'
 import { useSidenote } from './references'
 import InlineNote from './inline-note'
 
-const Sidenote = ({ children, url, sxReference, sxLabel, ...props }) => {
+const Sidenote = ({ children, url, ...props }) => {
   const { number, color } = useSidenote(children, url)
 
   return (
-    <InlineNote
-      number={number}
-      sxNote={sxReference}
-      sxLabel={sxLabel}
-      color={color}
-      url={url}
-      {...props}
-    >
+    <InlineNote number={number} color={color} url={url} {...props}>
       {children}
     </InlineNote>
   )
