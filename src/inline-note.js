@@ -23,8 +23,7 @@ const InlineNote = ({
   url,
   color,
   children,
-  hideLabel = false,
-  hideReference = false,
+  hide = false,
   sx,
   sxReference,
   sxLabel,
@@ -56,7 +55,6 @@ const InlineNote = ({
           cursor: 'pointer',
           color: color,
           transition: 'color 0.2s ease-in-out',
-          display: hideLabel ? 'none' : 'initial',
           ...sxLabel,
         }}
       >
@@ -84,7 +82,7 @@ const InlineNote = ({
           mb: [3, 3, 3, 4],
           verticalAlign: 'baseline',
           position: 'relative',
-          display: hideReference
+          display: hide
             ? 'none'
             : [
                 selectedMobile ? 'block' : 'none',

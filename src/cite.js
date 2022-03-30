@@ -17,7 +17,7 @@ const CiteInner = ({ id, data, ...props }) => {
   )
 }
 
-const CiteSeparator = ({ sep = ',' }) => {
+const CiteSeparator = ({ sep = ',', sx }) => {
   const { color } = useReferences()
 
   return (
@@ -28,6 +28,7 @@ const CiteSeparator = ({ sep = ',' }) => {
           fontSize: ['16px', '16px', '16px', '20px'],
           color: color,
           display: 'initial',
+          ...sx,
         }}
       >
         <sup>{sep}</sup>
@@ -78,9 +79,26 @@ const Cite = ({ id, ids, ...props }) => {
       <>
         <CiteInner id={ids[0]} {...props} />
         {ids.slice(1, count - 1).map((d, i) => (
-          <CiteInner key={i} id={d} hideLabel {...props} />
+          <Box as='span' key={d}>
+            <CiteSeparator
+              sep=','
+              sx={{ display: ['initial', 'initial', 'none', 'none'] }}
+            />
+            <CiteInner
+              id={d}
+              sxLabel={{ display: ['initial', 'initial', 'none', 'none'] }}
+              {...props}
+            />
+          </Box>
         ))}
-        <CiteSeparator sep='-' />
+        <CiteSeparator
+          sep=','
+          sx={{ display: ['initial', 'initial', 'none', 'none'] }}
+        />
+        <CiteSeparator
+          sep='-'
+          sx={{ display: ['none', 'none', 'initial', 'initial'] }}
+        />
         <CiteInner id={ids[count - 1]} {...props} />
       </>
     )
