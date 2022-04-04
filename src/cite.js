@@ -1,148 +1,38 @@
 import React from 'react'
 import { Box } from 'theme-ui'
-import { useState } from 'react'
-import { useReferences } from './references'
+import { useReference, useReferences } from './references'
+import InlineNote from './inline-note'
 
-const Wrapper = ({ url, children, sx }) => {
-  if (url) {
-    return (
-      <Box as='a' href={url} sx={sx}>
-        {children}
-      </Box>
-    )
-  } else {
-    return (
-      <Box as='span' sx={sx}>
-        {children}
-      </Box>
-    )
-  }
+const sx = {
+  mobile: {
+    display: ['initial', 'initial', 'none', 'none'],
+    '@media print': {
+      display: 'none',
+    },
+  },
+  desktop: {
+    display: ['none', 'none', 'initial', 'initial'],
+    '@media print': {
+      display: 'initial',
+    },
+  },
 }
 
-const CiteInner = ({ id, data, hide = false, sx, sxReference, sxLabel }) => {
-  const { references, color } = useReferences()
-  if (!Object.keys(references).includes(id)) {
-    throw Error(`referencee ${id} not found`)
-  }
-  data = references[id] || data
-  data.offset = data.offset || 0
-  const [selected, setSelected] = useState(false)
-  const [selectedMobile, setSelectedMobile] = useState(false)
-
-  const toggleOn = () => {
-    setSelected(true)
-  }
-
-  const toggleOff = () => {
-    setSelected(false)
-  }
-
-  const toggle = () => {
-    setSelectedMobile(!selectedMobile)
-  }
+const CiteInner = ({ id, data, ...props }) => {
+  const { reference, number, color } = useReference(id)
+  const { url, note, authors, year, title, journal, editors } =
+    reference || data
 
   return (
-    <Box as='span' sx={{ userSelect: 'none', ...sx }}>
-      <Box
-        as='span'
-        onMouseOver={toggleOn}
-        onMouseOut={toggleOff}
-        onClick={toggle}
-        sx={{
-          fontSize: ['16px', '16px', '16px', '20px'],
-          cursor: 'pointer',
-          color: color,
-          transition: 'color 0.2s ease-in-out',
-          display: hide ? 'none' : 'initial',
-          ...sxLabel,
-        }}
-      >
-        <sup>{data.number}</sup>
-      </Box>
-      <Wrapper
-        url={data.url}
-        sx={{
-          float: ['none', 'none', 'right', 'right'],
-          clear: ['none', 'none', 'right', 'right'],
-          mr: [
-            0,
-            0,
-            'calc(-1 * (3 * (100vw - 32px * 13) / 12 + 32px * 3))',
-            'calc(-1 * (3 * (100vw - 48px * 13) / 12 + 48px * 3))',
-          ],
-          width: [
-            'calc(4 * 100vw / 6 - 30px)',
-            'calc(4 * 100vw / 8 - 42px)',
-            'calc(2 * (100vw - 32px * 13) / 12 + 32px)',
-            'calc(2 * (100vw - 48px * 13) / 12 + 48px)',
-          ],
-          ml: [0, 'calc(1 * 100vw / 8)', 0, 0],
-          mt: [3, 3, 0, 0],
-          mb: [3, 3, 3, 4],
-          verticalAlign: 'baseline',
-          position: 'relative',
-          display: [
-            selectedMobile ? 'block' : 'none',
-            selectedMobile ? 'block' : 'none',
-            'initial',
-            'initial',
-          ],
-          ...sxReference,
-        }}
-      >
-        <Box as='span' onMouseOver={toggleOn} onMouseOut={toggleOff}>
-          <Box
-            as='span'
-            sx={{
-              fontFamily: 'body',
-              fontSize: [1, 1, '13px', '15px'],
-              lineHeight: 1.25,
-              letterSpacing: '0.0125em',
-              color: color,
-              opacity: [1, 1, selected ? 1 : 0.5],
-              display: 'inline-block',
-              transition: 'opacity 0.2s ease-in-out',
-              textAlign: ['left', 'left', 'right', 'right'],
-            }}
-          >
-            <Box
-              as='span'
-              sx={{
-                position: 'relative',
-                right: ['100%'],
-                mr: ['10px'],
-                mt: ['-50px'],
-                textAlign: 'right',
-                lineHeight: 1.25,
-                letterSpacing: '0.0125em',
-                display: ['none', 'none', 'initial'],
-              }}
-            >
-              {data.number}
-            </Box>
-            <Box
-              as='span'
-              sx={{
-                mt: [0, 0, '-16px', '-18px'],
-                textAlign: 'left',
-                display: ['initial', 'initial', 'block'],
-                lineHeight: 1.25,
-                letterSpacing: '0.0125em',
-              }}
-            >
-              {data.note}
-              {data.authors} {data.year ? `(${data.year})` : ''} {data.title}{' '}
-              <i>{data.journal}</i>{' '}
-              {data.editors ? `edited by ${data.editors}` : ''}
-            </Box>
-          </Box>
-        </Box>
-      </Wrapper>
-    </Box>
+    <InlineNote number={number} url={url} color={color} {...props}>
+      {note}
+      {authors} {year ? `(${year})` : ''} {title} <i>{journal}</i>{' '}
+      {editors ? `edited by ${editors}` : ''}
+    </InlineNote>
   )
 }
 
-const CiteSeparator = ({ sep = ',' }) => {
+const CiteSeparator = ({ sep = ',', sx }) => {
   const { color } = useReferences()
 
   return (
@@ -153,6 +43,7 @@ const CiteSeparator = ({ sep = ',' }) => {
           fontSize: ['16px', '16px', '16px', '20px'],
           color: color,
           display: 'initial',
+          ...sx,
         }}
       >
         <sup>{sep}</sup>
@@ -162,8 +53,6 @@ const CiteSeparator = ({ sep = ',' }) => {
 }
 
 const Cite = ({ id, ids, ...props }) => {
-  const { references, color } = useReferences()
-
   if (!id && !ids) {
     throw Error('either id or ids must be specified')
   }
@@ -182,33 +71,53 @@ const Cite = ({ id, ids, ...props }) => {
     throw Error('array of ids is empty')
   } else if (count === 1) {
     return <CiteInner id={ids[0]} {...props} />
-  } else if (count === 2) {
+  }
+
+  let hide
+  if (Array.isArray(props.hide) && props.hide.length !== count) {
+    throw Error('length of hide must match length of ids')
+  } else if (Array.isArray(props.hide)) {
+    hide = props.hide
+  } else {
+    hide = new Array(count).fill(props.hide)
+  }
+
+  if (count === 2) {
     return (
       <>
-        <CiteInner id={ids[0]} {...props} />
+        <CiteInner id={ids[0]} {...props} hide={hide[0]} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[1]} {...props} />
+        <CiteInner id={ids[1]} {...props} hide={hide[1]} />
       </>
     )
   } else if (count === 3) {
     return (
       <>
-        <CiteInner id={ids[0]} {...props} />
+        <CiteInner id={ids[0]} {...props} hide={hide[0]} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[1]} {...props} />
+        <CiteInner id={ids[1]} {...props} hide={hide[1]} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[2]} {...props} />
+        <CiteInner id={ids[2]} {...props} hide={hide[2]} />
       </>
     )
   } else {
     return (
       <>
-        <CiteInner id={ids[0]} {...props} />
+        <CiteInner id={ids[0]} {...props} hide={hide[0]} />
         {ids.slice(1, count - 1).map((d, i) => (
-          <CiteInner key={i} id={d} hide {...props} />
+          <Box as='span' key={d}>
+            <CiteSeparator sep=',' sx={sx.mobile} />
+            <CiteInner
+              id={d}
+              sxLabel={sx.mobile}
+              {...props}
+              hide={hide[i + 1]}
+            />
+          </Box>
         ))}
-        <CiteSeparator sep='-' />
-        <CiteInner id={ids[count - 1]} {...props} />
+        <CiteSeparator sep=',' sx={sx.mobile} />
+        <CiteSeparator sep='-' sx={sx.desktop} />
+        <CiteInner id={ids[count - 1]} {...props} hide={hide[count - 1]} />
       </>
     )
   }

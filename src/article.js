@@ -9,6 +9,7 @@ import {
   formatDate,
 } from '@carbonplan/components'
 import { Left } from '@carbonplan/icons'
+import { PrintedFootnotes } from './printed-footnotes'
 import { ReferencesProvider } from './references'
 import QuickLook from './quick-look'
 import ReadMore from './read-more'
@@ -259,6 +260,8 @@ const Article = ({
                   />
                 )}
                 {children}
+
+                <PrintedFootnotes />
               </Box>
             </ReferencesProvider>
             <Divider
