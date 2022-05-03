@@ -6,7 +6,15 @@ const Sidenote = ({ children, url, ...props }) => {
   const { number, color } = useSidenote(children, url)
 
   return (
-    <InlineNote number={number} color={color} url={url} {...props}>
+    <InlineNote
+      number={number}
+      color={color}
+      url={url}
+      sxReference={{
+        '& a': { color: 'inherit', '&:hover': { color: 'inherit' } },
+      }}
+      {...props}
+    >
       {children}
     </InlineNote>
   )
