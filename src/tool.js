@@ -15,6 +15,7 @@ const Tool = ({
   quickLookStart = 8,
   displayTitle,
   children,
+  ...props
 }) => {
   return (
     <Layout
@@ -24,6 +25,7 @@ const Tool = ({
       title={meta.title + ' – CarbonPlan'}
       links={'local'}
       nav={'research'}
+      {...props}
     >
       <Guide />
       <Row sx={{ mb: [3, 4, 5, 6] }}>
