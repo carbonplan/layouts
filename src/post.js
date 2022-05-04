@@ -57,7 +57,7 @@ const Authors = ({ authors }) => {
   )
 }
 
-const Post = ({ back = '/blog', children, meta, number }) => {
+const Post = ({ back = '/blog', children, meta, number, ...props }) => {
   const colors = ['red', 'orange', 'yellow', 'pink']
   const avatars = meta.authors.map((d, i) => {
     return { name: d, color: colors[(number + i) % 4] }
@@ -76,6 +76,7 @@ const Post = ({ back = '/blog', children, meta, number }) => {
       metadata={'scroll'}
       container={true}
       printable={true}
+      {...props}
     >
       <Row sx={{ mt: [4, 6, 7, 8] }}>
         <Column start={[1, 2, 2, 2]} width={[2, 1, 2, 2]}>
