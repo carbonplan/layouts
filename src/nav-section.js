@@ -3,7 +3,14 @@ import { useState } from 'react'
 import { Layout, Row, Column, FadeIn } from '@carbonplan/components'
 import NavMenu from './nav-menu'
 
-const NavSection = ({ children, name, title, description, menu = {} }) => {
+const NavSection = ({
+  children,
+  name,
+  title,
+  description,
+  menu = {},
+  ...props
+}) => {
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -15,6 +22,7 @@ const NavSection = ({ children, name, title, description, menu = {} }) => {
       }}
       title={title}
       description={description}
+      {...props}
     >
       <Row>
         <Column start={[1, 1, 2, 2]} width={[4, 4, 2, 2]}>

@@ -22,6 +22,7 @@ const Article = ({
   meta,
   references,
   displayTitle,
+  ...props
 }) => {
   return (
     <Layout
@@ -32,6 +33,7 @@ const Article = ({
       metadata={'scroll'}
       nav={'research'}
       printable={true}
+      {...props}
     >
       <Box
         sx={{

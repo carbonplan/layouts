@@ -6,7 +6,7 @@ import ReadMore from './read-more'
 
 const prefix = 'https://images.carbonplan.org'
 
-const Supplement = ({ back = '/research', children, meta }) => {
+const Supplement = ({ back = '/research', children, meta, ...props }) => {
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
@@ -16,6 +16,7 @@ const Supplement = ({ back = '/research', children, meta }) => {
       metadata={'scroll'}
       nav={'research'}
       printable={true}
+      {...props}
     >
       <Row>
         <Column
