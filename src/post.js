@@ -36,9 +36,9 @@ const Authors = ({ authors }) => {
           fontSize: [2, 2, 2, 3],
         }}
       >
-        {authors.map((author, ix) => (
+        {authors.map(({ id }, ix) => (
           <Text
-            key={author}
+            key={id}
             sx={{
               display: 'inline-block',
               mr: [2],
@@ -47,7 +47,7 @@ const Authors = ({ authors }) => {
               fontSize: [2, 2, 2, 3],
             }}
           >
-            {author.replace(/ /g, '\u00a0')}
+            {id.replace(/ /g, '\u00a0')}
             {'\u00a0'}
             {ix < authors.length - 1 ? '+' : ''}
           </Text>
@@ -60,7 +60,13 @@ const Authors = ({ authors }) => {
 const Post = ({ back = '/blog', children, meta, number, ...props }) => {
   const colors = ['red', 'orange', 'yellow', 'pink']
   const avatars = meta.authors.map((d, i) => {
-    return { name: d, color: colors[(number + i) % 4] }
+    const color = colors[(number + i) % 4]
+    if (typeof d === 'string') {
+      return { id: d, name: d, color }
+    } else {
+      const { src, name } = d
+      return { id: name, src, color }
+    }
   })
 
   return (
@@ -146,7 +152,7 @@ const Post = ({ back = '/blog', children, meta, number, ...props }) => {
               }}
             >
               <Column start={[1]} width={[3, 3, 2, 2]} sx={{ mb: [3] }}>
-                <Authors authors={meta.authors} />
+                <Authors authors={avatars} />
               </Column>
               <Column
                 start={[4, 4, 1, 1]}
