@@ -104,26 +104,28 @@ const NavMenu = ({
               </Box>
               <Box sx={{ my: [2] }}>
                 {contents[d].map((e) => {
+                  const href =
+                    '/' +
+                    (e['href'] ? e['href'] : e.replace(/ /g, '-').toLowerCase())
+                  const label = e['label'] ? e['label'] : e
                   return (
                     <Link
-                      key={e}
-                      href={
-                        prefix === '/'
-                          ? '/' + e.toLowerCase()
-                          : prefix + '/' + e.toLowerCase()
-                      }
+                      key={label}
+                      href={prefix === '/' ? '/' + href : prefix + '/' + href}
                       sx={{
                         width: 'fit-content',
                         display: 'block',
                         textDecoration: 'none',
                         color:
-                          e.toLowerCase() === active ? 'primary' : 'secondary',
+                          label.toLowerCase() === active
+                            ? 'primary'
+                            : 'secondary',
                         '&:hover': {
                           color: 'primary',
                         },
                       }}
                     >
-                      {e}
+                      {label}
                     </Link>
                   )
                 })}
