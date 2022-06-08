@@ -56,132 +56,139 @@ const Commentary = ({
       {...props}
     >
       <Box
+        as='article'
         sx={{
           px: [0, 0, 0],
-          pt: [0, 0, '100px'],
+          pt: [0, 5, '100px'],
         }}
       >
-        {meta.links && (
-          <Row>
-            <Column start={[1, 2, 4, 4]} width={[6, 6, 6, 6]}>
-              <LinkGroup
-                color='secondary'
-                members={meta.links}
-                sx={{ mb: [5], mt: [6, -2, -2, -2] }}
-              />
-            </Column>
-          </Row>
-        )}
-
-        <Box as='article'>
-          <Row>
-            <Column
-              start={[1, 1, 2, 2]}
-              width={[2]}
-              dr={1}
-              sx={{
-                mb: [-3, '-120px', 0, 0],
-                mt: ['20px', '94px', '109px', '122px'],
-              }}
-            >
-              <Button
-                inverted
-                size='xs'
-                onClick={() => {
-                  if (window.history.state?.idx) {
-                    window.history.back()
-                  } else {
-                    window.location.href = back
-                  }
-                }}
-                prefix={<Left />}
-                sx={{
-                  ml: ['-2px', '-2px', '-2px', '-2px'],
-                  '@media print': {
-                    display: 'none',
-                  },
-                }}
-              >
-                Back
-              </Button>
-            </Column>
-
-            <Column start={[1, 2, 4, 4]} width={[6, 6, 6, 6]}>
-              <Themed.h1>{displayTitle || meta.title}</Themed.h1>
-            </Column>
-          </Row>
-
-          <Row sx={{ mb: [3, 3, 4, 5] }}>
-            <Column
-              start={[1, 1, 2, 2]}
-              width={[3, 1, 2, 2]}
-              sx={{ ...sx.headingBorder, order: [1] }}
-            >
-              <Box
-                sx={{
-                  ...sx.heading,
-                  mt: ['3px'],
-                }}
-              >
-                <Box
-                  as='span'
-                  sx={{ display: ['none', 'initial', 'none', 'none'] }}
-                >
-                  ({meta.number})
-                </Box>
-                <Box
-                  as='span'
-                  sx={{ display: ['initial', 'none', 'initial', 'initial'] }}
-                >
-                  COMMENTARY({meta.number})
-                </Box>
-              </Box>
-            </Column>
+        <Row>
+          {meta.links && (
             <Column
               start={[1, 2, 4, 4]}
-              width={[6, 5, 6, 6]}
-              sx={{ ...sx.headingBorder, order: [3, 2] }}
+              width={[6, 6, 6, 6]}
+              sx={{ order: [4, 1, 1, 1] }}
             >
-              <Box sx={{ lineHeight: [1.15, 1.15, 1.35, 1.35] }}>
-                <Text sx={sx.heading}>
-                  by{' '}
-                  {meta.authors.map((author, ix) => (
-                    <Text
-                      key={author}
-                      sx={{ display: 'inline-block', mr: [2] }}
-                    >
-                      {author.replace(/ /g, '\u00a0')}{' '}
-                      {ix < meta.authors.length - 1 ? '+' : ''}
-                    </Text>
-                  ))}
-                </Text>
-              </Box>
+              <LinkGroup color='secondary' members={meta.links} />
             </Column>
+          )}
 
-            <Column
-              start={[4, 7, 10, 10]}
-              width={[3, 2, 2, 2]}
-              sx={{ ...sx.headingBorder, order: [2, 3] }}
+          <Column
+            start={[1, 1, 2, 2]}
+            width={[2]}
+            dr={1}
+            sx={{
+              mb: [-3, '-120px', 0, 0],
+              mt: ['20px', '94px', '109px', '122px'],
+              order: [1, 2, 2, 2],
+            }}
+          >
+            <Button
+              inverted
+              size='xs'
+              onClick={() => {
+                if (window.history.state?.idx) {
+                  window.history.back()
+                } else {
+                  window.location.href = back
+                }
+              }}
+              prefix={<Left />}
+              sx={{
+                ml: ['-2px', '-2px', '-2px', '-2px'],
+                '@media print': {
+                  display: 'none',
+                },
+              }}
             >
-              <Text sx={sx.heading}>{formatDate(meta.date)}</Text>
-            </Column>
-          </Row>
+              Back
+            </Button>
+          </Column>
 
-          <Row>
-            <Column start={[1, 2, 4, 4]} width={[6, 6, 6, 6]}>
-              <ReferencesProvider color={meta.color} references={references}>
-                {children}
+          <Column
+            start={[1, 2, 4, 4]}
+            width={[6, 6, 6, 6]}
+            sx={{ order: [3, 3, 3, 3] }}
+          >
+            <Themed.h1>{displayTitle || meta.title}</Themed.h1>
+          </Column>
 
-                <PrintedFootnotes />
-              </ReferencesProvider>
+          <Column
+            start={[3, 1, 1, 1]}
+            width={[4, 8, 12, 12]}
+            sx={{ order: [2, 4, 4, 4] }}
+          >
+            <Row columns={[4, 8, 12, 12]}>
+              <Column
+                start={[1, 1, 2, 2]}
+                width={[2, 1, 2, 2]}
+                sx={{ ...sx.headingBorder, order: [1] }}
+              >
+                <Box
+                  sx={{
+                    ...sx.heading,
+                    mt: ['3px'],
+                  }}
+                >
+                  <Box
+                    as='span'
+                    sx={{ display: ['none', 'initial', 'none', 'none'] }}
+                  >
+                    ({meta.number})
+                  </Box>
+                  <Box
+                    as='span'
+                    sx={{ display: ['initial', 'none', 'initial', 'initial'] }}
+                  >
+                    COMMENTARY({meta.number})
+                  </Box>
+                </Box>
+              </Column>
 
-              <Divider
-                sx={{ mt: [6, 6, 7, 7], '@media print': { display: 'none' } }}
-              />
-              <ReadMore target='research' />
-            </Column>
-          </Row>
-        </Box>
+              <Column
+                start={[1, 2, 4, 4]}
+                width={[6, 5, 6, 6]}
+                sx={{ ...sx.headingBorder, order: [3, 2] }}
+              >
+                <Box sx={{ lineHeight: [1.15, 1.15, 1.35, 1.35] }}>
+                  <Text sx={sx.heading}>
+                    by{' '}
+                    {meta.authors.map((author, ix) => (
+                      <Text
+                        key={author}
+                        sx={{ display: 'inline-block', mr: [2] }}
+                      >
+                        {author.replace(/ /g, '\u00a0')}{' '}
+                        {ix < meta.authors.length - 1 ? '+' : ''}
+                      </Text>
+                    ))}
+                  </Text>
+                </Box>
+              </Column>
+
+              <Column
+                start={[3, 7, 10, 10]}
+                width={[2, 2, 2, 2]}
+                sx={{ ...sx.headingBorder, order: [2, 3] }}
+              >
+                <Text sx={sx.heading}>{formatDate(meta.date)}</Text>
+              </Column>
+            </Row>
+          </Column>
+
+          <Column start={[1, 2, 4, 4]} width={[6, 6, 6, 6]} sx={{ order: [5] }}>
+            <ReferencesProvider color={meta.color} references={references}>
+              {children}
+
+              <PrintedFootnotes />
+            </ReferencesProvider>
+
+            <Divider
+              sx={{ mt: [6, 6, 7, 7], '@media print': { display: 'none' } }}
+            />
+            <ReadMore target='research' />
+          </Column>
+        </Row>
       </Box>
     </Layout>
   )
