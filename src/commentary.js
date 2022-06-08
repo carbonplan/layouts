@@ -19,6 +19,7 @@ const getSx = (color) => {
   return {
     headingBorder: {
       pt: 3,
+      mb: [0, 2, 3, 4],
       borderStyle: 'solid',
       borderWidth: 0,
       borderTopWidth: [0, '1px'],
