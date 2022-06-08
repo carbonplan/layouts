@@ -11,9 +11,13 @@ const Reference = ({ number, id }) => {
     reference
 
   return (
-    <Box as={url ? 'a' : 'div'} href={url} sx={{ color: 'primary' }}>
+    <Box
+      as={url ? 'a' : 'div'}
+      href={url}
+      sx={{ color: 'primary', position: 'relative' }}
+    >
       <Box>
-        <Box as='span' sx={{ mr: 3 }}>
+        <Box as='span' sx={{ position: 'absolute', right: '100%', mr: 3 }}>
           {number}
         </Box>
         <Box as='span'>
