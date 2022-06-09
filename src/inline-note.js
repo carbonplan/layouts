@@ -22,6 +22,8 @@ const InlineNote = ({
   number,
   url,
   color,
+  side = 'right',
+  colOffset = 1,
   children,
   hide = false,
   sx,
@@ -63,21 +65,26 @@ const InlineNote = ({
       <Wrapper
         url={url}
         sx={{
-          float: ['none', 'none', 'right', 'right'],
-          clear: ['none', 'none', 'right', 'right'],
-          mr: [
+          float: ['none', 'none', side, side],
+          clear: ['none', 'none', side, side],
+          [side === 'right' ? 'mr' : 'ml']: [
             0,
-            0,
-            'calc(-1 * (3 * (100vw - 32px * 13) / 12 + 32px * 3))',
-            'calc(-1 * (3 * (100vw - 48px * 13) / 12 + 48px * 3))',
+            'calc(1 * 100vw / 8)',
+            `calc(${'-1'} * (${
+              colOffset + 2
+            } * (100vw - 32px * 13) / 12 + 32px * ${colOffset + 2}))`,
+            `calc(${'-1'} * (${
+              colOffset + 2
+            } * (100vw - 48px * 13) / 12 + 48px * ${colOffset + 2}))`,
           ],
+          ...(side === 'right' ? { ml: [0, 'calc(1 * 100vw / 8)', 0, 0] } : {}),
           width: [
             'calc(4 * 100vw / 6 - 30px)',
             'calc(4 * 100vw / 8 - 42px)',
             'calc(2 * (100vw - 32px * 13) / 12 + 32px)',
             'calc(2 * (100vw - 48px * 13) / 12 + 48px)',
           ],
-          ml: [0, 'calc(1 * 100vw / 8)', 0, 0],
+
           mt: [3, 3, 0, 0],
           mb: [3, 3, 3, 4],
           verticalAlign: 'baseline',
