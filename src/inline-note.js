@@ -23,7 +23,7 @@ const InlineNote = ({
   url,
   color,
   side = 'right',
-  colOffset = 1,
+  mode,
   children,
   hide = false,
   sx,
@@ -44,6 +44,8 @@ const InlineNote = ({
   const toggle = () => {
     setSelectedMobile(!selectedMobile)
   }
+
+  const colOffset = mode === 'dual' ? 0 : 1
 
   return (
     <Box as='span' sx={{ userSelect: 'none', ...sx }}>

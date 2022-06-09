@@ -3,13 +3,15 @@ import { useSidenote } from './references'
 import InlineNote from './inline-note'
 
 const Sidenote = ({ children, url, ...props }) => {
-  const { number, color } = useSidenote(children, url)
+  const { number, color, side, mode } = useSidenote(children, url)
 
   return (
     <InlineNote
       number={number}
       color={color}
       url={url}
+      side={side}
+      mode={mode}
       sxReference={{
         '& a': { color: 'inherit', '&:hover': { color: 'inherit' } },
       }}

@@ -178,7 +178,11 @@ const Commentary = ({
           </Column>
 
           <Column start={[1, 2, 4, 4]} width={[6, 6, 6, 6]} sx={{ order: [5] }}>
-            <ReferencesProvider color={meta.color} references={references}>
+            <ReferencesProvider
+              color={meta.color}
+              references={references}
+              mode='dual'
+            >
               {children}
 
               <PrintedFootnotes />
