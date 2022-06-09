@@ -102,11 +102,17 @@ const InlineNote = ({
           ...sxReference,
         }}
       >
-        <Box as='span' onMouseOver={toggleOn} onMouseOut={toggleOff}>
+        <Box
+          as='span'
+          onMouseOver={toggleOn}
+          onMouseOut={toggleOff}
+          sx={{ width: '100%' }}
+        >
           <Box
             as='span'
             sx={{
               fontFamily: 'body',
+              width: '100%',
               fontSize: [1, 1, '13px', '15px'],
               lineHeight: 1.25,
               letterSpacing: '0.0125em',
@@ -119,23 +125,41 @@ const InlineNote = ({
           >
             <Box
               as='span'
-              sx={{
-                position: 'relative',
-                right: ['100%'],
-                mr: ['10px'],
-                mt: ['-50px'],
-                textAlign: 'right',
-                lineHeight: 1.25,
-                letterSpacing: '0.0125em',
-                display: ['none', 'none', 'initial'],
-              }}
+              sx={
+                mode === 'dual'
+                  ? {
+                      width: '100%',
+                      position: 'relative',
+                      textAlign: 'left',
+                      lineHeight: 1.25,
+                      letterSpacing: '0.0125em',
+                      display: ['none', 'none', 'block'],
+                      pb: [0, 0, 2, 2],
+                      mb: [0, 0, 3, 3],
+                      borderStyle: 'solid',
+                      borderWidth: 0,
+                      borderBottomWidth: [0, '1px'],
+                      borderImage: (theme) =>
+                        `linear-gradient(to right, ${theme.colors[color]} 10%, transparent 10%) 100% 0`,
+                    }
+                  : {
+                      position: 'relative',
+                      right: ['100%'],
+                      mr: ['10px'],
+                      mt: ['-50px'],
+                      textAlign: 'right',
+                      lineHeight: 1.25,
+                      letterSpacing: '0.0125em',
+                      display: ['none', 'none', 'initial'],
+                    }
+              }
             >
               {number}
             </Box>
             <Box
               as='span'
               sx={{
-                mt: [0, 0, '-16px', '-18px'],
+                mt: mode === 'dual' ? 0 : [0, 0, '-16px', '-18px'],
                 textAlign: 'left',
                 display: ['initial', 'initial', 'block'],
                 lineHeight: 1.25,
