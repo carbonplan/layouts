@@ -117,7 +117,7 @@ const InlineNote = ({
               lineHeight: 1.25,
               letterSpacing: '0.0125em',
               color: color,
-              opacity: [1, 1, selected ? 1 : 0.5],
+              opacity: [1, 1, selected || mode === 'dual' ? 1 : 0.5],
               display: 'inline-block',
               transition: 'opacity 0.2s ease-in-out',
               textAlign: ['left', 'left', 'right', 'right'],
