@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from 'theme-ui'
+import { Box, Divider } from 'theme-ui'
 import { useState } from 'react'
 
 const Wrapper = ({ url, children, sx }) => {
@@ -134,13 +134,7 @@ const InlineNote = ({
                       lineHeight: 1.25,
                       letterSpacing: '0.0125em',
                       display: ['none', 'none', 'block'],
-                      pb: [0, 0, 2, 2],
-                      mb: [0, 0, 3, 3],
-                      borderStyle: 'solid',
-                      borderWidth: 0,
-                      borderBottomWidth: [0, '1px'],
-                      borderImage: (theme) =>
-                        `linear-gradient(to right, ${theme.colors[color]} 10%, transparent 10%) 100% 0`,
+                      mb: [0, 0, 2, 2],
                     }
                   : {
                       position: 'relative',
@@ -156,6 +150,17 @@ const InlineNote = ({
             >
               {number}
             </Box>
+            {mode === 'dual' && (
+              <Divider
+                sx={{
+                  mb: [0, 0, 3, 3],
+                  borderColor: color,
+                  width: [0, '32px', '32px', '48px'],
+                  display: ['none', 'block', 'block', 'block'],
+                }}
+              />
+            )}
+
             <Box
               as='span'
               sx={{
