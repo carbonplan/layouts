@@ -20,8 +20,8 @@ const getSx = (color) => {
     divider: {
       mb: 3,
       borderColor: color,
-      width: [0, 0, '32px', '48px'],
-      display: ['none', 'none', 'block', 'block'],
+      width: [0, '32px', '32px', '48px'],
+      display: ['none', 'block', 'block', 'block'],
     },
     heading: {
       fontFamily: 'mono',
@@ -66,7 +66,7 @@ const Commentary = ({
             <Column
               start={[1, 2, 4, 4]}
               width={[6, 6, 6, 6]}
-              sx={{ order: [4, 1, 1, 1] }}
+              sx={{ order: [4, 2, 2, 2] }}
             >
               <LinkGroup color='secondary' members={meta.links} />
             </Column>
@@ -74,12 +74,12 @@ const Commentary = ({
 
           <Column
             start={[1, 1, 2, 2]}
-            width={[2]}
+            width={[2, 1, 2, 2]}
             dr={1}
             sx={{
-              mb: [-3, '-120px', 0, 0],
-              mt: ['20px', '94px', '109px', '122px'],
-              order: [1, 2, 2, 2],
+              mb: [-3, 0, 0, 0],
+              mt: ['20px', 0, 0, 0],
+              order: [1, 1, 1, 1],
             }}
           >
             <Button
@@ -117,13 +117,13 @@ const Commentary = ({
             width={[4, 8, 12, 12]}
             sx={{ order: [2, 4, 4, 4] }}
           >
-            <Row columns={[4, 8, 12, 12]}>
+            <Row columns={[4, 8, 12, 12]} sx={{ mt: ['21px', 0] }}>
               <Column
                 start={[1, 1, 2, 2]}
                 width={[2, 1, 2, 2]}
                 sx={{ order: [1] }}
               >
-                <Divider sx={{ ...sx.divider }} />
+                <Divider sx={sx.divider} />
 
                 <Box
                   sx={{
@@ -148,7 +148,7 @@ const Commentary = ({
 
               <Column
                 start={[1, 2, 4, 4]}
-                width={[6, 5, 6, 6]}
+                width={[4, 5, 6, 6]}
                 sx={{ order: [3, 2] }}
               >
                 <Divider
@@ -156,14 +156,19 @@ const Commentary = ({
                     ...sx.divider,
                     width: [
                       0,
-                      0,
+                      'calc((100vw - 9 * 32px) / 8)',
                       'calc((100vw - 13 * 32px) / 12)',
                       'calc((100vw - 13 * 48px) / 12)',
                     ],
                   }}
                 />
 
-                <Box sx={{ lineHeight: [1.15, 1.15, 1.35, 1.35] }}>
+                <Box
+                  sx={{
+                    lineHeight: [1.15, 1.15, 1.35, 1.35],
+                    mt: [3, 0, 0, 0],
+                  }}
+                >
                   <Text sx={sx.heading}>
                     by{' '}
                     {meta.authors.map((author, ix) => (
@@ -184,7 +189,7 @@ const Commentary = ({
                 width={[2, 2, 2, 2]}
                 sx={{ order: [2, 3] }}
               >
-                <Divider sx={{ ...sx.divider }} />
+                <Divider sx={sx.divider} />
 
                 <Text sx={sx.heading}>{formatDate(meta.date)}</Text>
               </Column>
