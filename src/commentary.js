@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, Container, Divider, Themed } from 'theme-ui'
+import { Box, Text, Divider, Themed } from 'theme-ui'
 import {
   Layout,
   Row,
@@ -17,14 +17,11 @@ const prefix = 'https://images.carbonplan.org'
 
 const getSx = (color) => {
   return {
-    headingBorder: {
-      pt: 3,
-      mb: [0, 2, 3, 4],
-      borderStyle: 'solid',
-      borderWidth: 0,
-      borderTopWidth: [0, '1px'],
-      borderImage: (theme) =>
-        `linear-gradient(to right, ${theme.colors[color]}  15%, transparent 15%) 100% 0`,
+    divider: {
+      mb: 3,
+      borderColor: color,
+      width: [0, 0, '32px', '48px'],
+      display: ['none', 'none', 'block', 'block'],
     },
     heading: {
       fontFamily: 'mono',
@@ -32,6 +29,7 @@ const getSx = (color) => {
       textTransform: 'uppercase',
       color,
       fontSize: [1, 1, 2, 3],
+      mb: [0, 2, 3, 4],
     },
   }
 }
@@ -123,8 +121,10 @@ const Commentary = ({
               <Column
                 start={[1, 1, 2, 2]}
                 width={[2, 1, 2, 2]}
-                sx={{ ...sx.headingBorder, order: [1] }}
+                sx={{ order: [1] }}
               >
+                <Divider sx={{ ...sx.divider }} />
+
                 <Box
                   sx={{
                     ...sx.heading,
@@ -149,8 +149,20 @@ const Commentary = ({
               <Column
                 start={[1, 2, 4, 4]}
                 width={[6, 5, 6, 6]}
-                sx={{ ...sx.headingBorder, order: [3, 2] }}
+                sx={{ order: [3, 2] }}
               >
+                <Divider
+                  sx={{
+                    ...sx.divider,
+                    width: [
+                      0,
+                      0,
+                      'calc((100vw - 13 * 32px) / 12)',
+                      'calc((100vw - 13 * 48px) / 12)',
+                    ],
+                  }}
+                />
+
                 <Box sx={{ lineHeight: [1.15, 1.15, 1.35, 1.35] }}>
                   <Text sx={sx.heading}>
                     by{' '}
@@ -170,8 +182,10 @@ const Commentary = ({
               <Column
                 start={[3, 7, 10, 10]}
                 width={[2, 2, 2, 2]}
-                sx={{ ...sx.headingBorder, order: [2, 3] }}
+                sx={{ order: [2, 3] }}
               >
+                <Divider sx={{ ...sx.divider }} />
+
                 <Text sx={sx.heading}>{formatDate(meta.date)}</Text>
               </Column>
             </Row>
