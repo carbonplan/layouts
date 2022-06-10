@@ -151,10 +151,13 @@ const InlineNote = ({
               {number}
             </Box>
             {mode === 'dual' && (
-              <Divider
+              <Box
+                as='span'
                 sx={{
                   mb: [0, 0, 3, 3],
                   borderColor: color,
+                  borderWidth: 0,
+                  borderBottom: '1px solid',
                   width: [0, '32px', '32px', '48px'],
                   display: ['none', 'block', 'block', 'block'],
                 }}
