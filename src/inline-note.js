@@ -134,7 +134,6 @@ const InlineNote = ({
                       lineHeight: 1.25,
                       letterSpacing: '0.0125em',
                       display: ['none', 'none', 'block'],
-                      mb: [0, 0, 2, 2],
                     }
                   : {
                       position: 'relative',
@@ -154,7 +153,7 @@ const InlineNote = ({
               <Box
                 as='span'
                 sx={{
-                  mb: [0, 0, 3, 3],
+                  my: [0, 0, 2, 2],
                   borderColor: color,
                   borderWidth: 0,
                   borderBottom: '1px solid',
