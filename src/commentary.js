@@ -66,7 +66,7 @@ const Commentary = ({
             <Column
               start={[1, 2, 4, 4]}
               width={[6, 6, 6, 6]}
-              sx={{ order: [4, 2, 2, 2] }}
+              sx={{ order: [4, 2, 2, 2], mb: ['6px', 0] }}
             >
               <LinkGroup color='secondary' members={meta.links} />
             </Column>
@@ -109,7 +109,9 @@ const Commentary = ({
             width={[6, 6, 6, 6]}
             sx={{ order: [3, 3, 3, 3] }}
           >
-            <Themed.h1>{displayTitle || meta.title}</Themed.h1>
+            <Box as='h1' variant='styles.h1'>
+              {displayTitle || meta.title}
+            </Box>
           </Column>
 
           <Column
