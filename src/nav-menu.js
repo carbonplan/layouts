@@ -104,9 +104,9 @@ const NavMenu = ({
               </Box>
               <Box sx={{ my: [2] }}>
                 {contents[d].map((e) => {
-                  const href =
-                    '/' +
-                    (e['href'] ? e['href'] : e.replace(/ /g, '-').toLowerCase())
+                  const href = e['href']
+                    ? e['href']
+                    : e.replace(/ /g, '-').toLowerCase()
                   const label = e['label'] ? e['label'] : e
                   return (
                     <Link
