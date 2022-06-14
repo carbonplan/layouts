@@ -66,7 +66,7 @@ const Commentary = ({
             <Column
               start={[1, 2, 4, 4]}
               width={[6, 6, 6, 6]}
-              sx={{ order: [4, 2, 2, 2], mb: ['6px', 0] }}
+              sx={{ order: [4, 2, 2, 2], mb: ['16px', 0] }}
             >
               <LinkGroup color='secondary' members={meta.links} />
             </Column>
