@@ -18,13 +18,20 @@ const sx = {
   },
 }
 
-const CiteInner = ({ id, data, ...props }) => {
-  const { reference, number, color } = useReference(id)
+const CiteInner = ({ id, data, first, ...props }) => {
+  const { reference, number, color, side, mode } = useReference(id, first)
   const { url, note, authors, year, title, journal, editors } =
     reference || data
 
   return (
-    <InlineNote number={number} url={url} color={color} {...props}>
+    <InlineNote
+      number={number}
+      url={url}
+      color={color}
+      side={side}
+      mode={mode}
+      {...props}
+    >
       {note}
       {authors} {year ? `(${year})` : ''} {title} <i>{journal}</i>{' '}
       {editors ? `edited by ${editors}` : ''}
@@ -87,7 +94,7 @@ const Cite = ({ id, ids, ...props }) => {
       <>
         <CiteInner id={ids[0]} {...props} hide={hide[0]} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[1]} {...props} hide={hide[1]} />
+        <CiteInner id={ids[1]} first={ids[0]} {...props} hide={hide[1]} />
       </>
     )
   } else if (count === 3) {
@@ -95,9 +102,9 @@ const Cite = ({ id, ids, ...props }) => {
       <>
         <CiteInner id={ids[0]} {...props} hide={hide[0]} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[1]} {...props} hide={hide[1]} />
+        <CiteInner id={ids[1]} first={ids[0]} {...props} hide={hide[1]} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[2]} {...props} hide={hide[2]} />
+        <CiteInner id={ids[2]} first={ids[0]} {...props} hide={hide[2]} />
       </>
     )
   } else {
@@ -110,6 +117,7 @@ const Cite = ({ id, ids, ...props }) => {
             <CiteInner
               id={d}
               sxLabel={sx.mobile}
+              first={ids[0]}
               {...props}
               hide={hide[i + 1]}
             />
@@ -117,7 +125,12 @@ const Cite = ({ id, ids, ...props }) => {
         ))}
         <CiteSeparator sep=',' sx={sx.mobile} />
         <CiteSeparator sep='-' sx={sx.desktop} />
-        <CiteInner id={ids[count - 1]} {...props} hide={hide[count - 1]} />
+        <CiteInner
+          id={ids[count - 1]}
+          first={ids[0]}
+          {...props}
+          hide={hide[count - 1]}
+        />
       </>
     )
   }

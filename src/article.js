@@ -228,7 +228,7 @@ const Article = ({
                       textTransform: 'uppercase',
                       fontSize: [1, 1, 1, 2],
                       mt: [3, 4, 4, 4],
-                      mb: [5, 5, 5, 5],
+                      mb: 0,
                     }}
                   >
                     by{' '}
@@ -258,7 +258,7 @@ const Article = ({
                   <LinkGroup
                     color={meta.color}
                     members={meta.links}
-                    sx={{ mb: [5], mt: [6, -2, -2, -2] }}
+                    sx={{ mb: [5], mt: [5, -2, -2, -2] }}
                   />
                 )}
                 {children}

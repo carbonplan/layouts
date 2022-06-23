@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from 'theme-ui'
+import { Box, Divider } from 'theme-ui'
 import { useState } from 'react'
 
 const Wrapper = ({ url, children, sx }) => {
@@ -22,6 +22,8 @@ const InlineNote = ({
   number,
   url,
   color,
+  side = 'right',
+  mode,
   children,
   hide = false,
   sx,
@@ -43,6 +45,8 @@ const InlineNote = ({
     setSelectedMobile(!selectedMobile)
   }
 
+  const colOffset = mode === 'dual' ? 0 : 1
+
   return (
     <Box as='span' sx={{ userSelect: 'none', ...sx }}>
       <Box
@@ -63,21 +67,26 @@ const InlineNote = ({
       <Wrapper
         url={url}
         sx={{
-          float: ['none', 'none', 'right', 'right'],
-          clear: ['none', 'none', 'right', 'right'],
-          mr: [
+          float: ['none', 'none', side, side],
+          clear: ['none', 'none', side, side],
+          [side === 'right' ? 'mr' : 'ml']: [
             0,
-            0,
-            'calc(-1 * (3 * (100vw - 32px * 13) / 12 + 32px * 3))',
-            'calc(-1 * (3 * (100vw - 48px * 13) / 12 + 48px * 3))',
+            'calc(1 * 100vw / 8)',
+            `calc(${'-1'} * (${
+              colOffset + 2
+            } * (100vw - 32px * 13) / 12 + 32px * ${colOffset + 2}))`,
+            `calc(${'-1'} * (${
+              colOffset + 2
+            } * (100vw - 48px * 13) / 12 + 48px * ${colOffset + 2}))`,
           ],
+          ...(side === 'right' ? { ml: [0, 'calc(1 * 100vw / 8)', 0, 0] } : {}),
           width: [
             'calc(4 * 100vw / 6 - 30px)',
             'calc(4 * 100vw / 8 - 42px)',
             'calc(2 * (100vw - 32px * 13) / 12 + 32px)',
             'calc(2 * (100vw - 48px * 13) / 12 + 48px)',
           ],
-          ml: [0, 'calc(1 * 100vw / 8)', 0, 0],
+
           mt: [3, 3, 0, 0],
           mb: [3, 3, 3, 4],
           verticalAlign: 'baseline',
@@ -93,11 +102,17 @@ const InlineNote = ({
           ...sxReference,
         }}
       >
-        <Box as='span' onMouseOver={toggleOn} onMouseOut={toggleOff}>
+        <Box
+          as='span'
+          onMouseOver={toggleOn}
+          onMouseOut={toggleOff}
+          sx={{ width: '100%' }}
+        >
           <Box
             as='span'
             sx={{
               fontFamily: 'body',
+              width: '100%',
               fontSize: [1, 1, '13px', '15px'],
               lineHeight: 1.25,
               letterSpacing: '0.0125em',
@@ -110,23 +125,48 @@ const InlineNote = ({
           >
             <Box
               as='span'
-              sx={{
-                position: 'relative',
-                right: ['100%'],
-                mr: ['10px'],
-                mt: ['-50px'],
-                textAlign: 'right',
-                lineHeight: 1.25,
-                letterSpacing: '0.0125em',
-                display: ['none', 'none', 'initial'],
-              }}
+              sx={
+                mode === 'dual'
+                  ? {
+                      width: '100%',
+                      position: 'relative',
+                      textAlign: 'left',
+                      lineHeight: 1.25,
+                      letterSpacing: '0.0125em',
+                      display: ['none', 'none', 'block'],
+                    }
+                  : {
+                      position: 'relative',
+                      right: ['100%'],
+                      mr: ['10px'],
+                      mt: ['-50px'],
+                      textAlign: 'right',
+                      lineHeight: 1.25,
+                      letterSpacing: '0.0125em',
+                      display: ['none', 'none', 'initial'],
+                    }
+              }
             >
               {number}
             </Box>
+            {mode === 'dual' && (
+              <Box
+                as='span'
+                sx={{
+                  my: [0, 0, 2, 2],
+                  borderColor: color,
+                  borderWidth: 0,
+                  borderBottom: '1px solid',
+                  width: [0, '32px', '32px', '48px'],
+                  display: ['none', 'block', 'block', 'block'],
+                }}
+              />
+            )}
+
             <Box
               as='span'
               sx={{
-                mt: [0, 0, '-16px', '-18px'],
+                mt: mode === 'dual' ? 0 : [0, 0, '-16px', '-18px'],
                 textAlign: 'left',
                 display: ['initial', 'initial', 'block'],
                 lineHeight: 1.25,
