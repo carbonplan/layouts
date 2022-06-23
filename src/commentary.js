@@ -45,7 +45,7 @@ const Commentary = ({
 
   return (
     <Layout
-      card={`${prefix}/social/${meta.card}.png`}
+      card={`${prefix}/social/commentary/${meta.card}.png`}
       description={meta.quickLook + '.'}
       title={meta.title + ' – CarbonPlan'}
       links={'local'}
