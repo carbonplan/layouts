@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, Divider, Themed } from 'theme-ui'
+import { Box, Text, Divider } from 'theme-ui'
 import {
   Layout,
   Row,
@@ -46,7 +46,7 @@ const Commentary = ({
   return (
     <Layout
       card={`${prefix}/social/commentary/${meta.card}.png`}
-      description={meta.quickLook + '.'}
+      description={meta.summary}
       title={meta.title + ' – CarbonPlan'}
       links={'local'}
       metadata={'scroll'}
