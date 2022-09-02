@@ -166,10 +166,10 @@ const Post = ({ back = '/blog', children, meta, number, ...props }) => {
                 <AvatarGroup
                   members={avatars}
                   fixedCount={3}
-                  spacing={[1, 2, 2, 3]}
+                  spacing={[2, 2, 2, 3]}
                   maxWidth='125px'
                   align={['right', 'left', 'left', 'left']}
-                  width={['90%', '90%', '100%', '100%']}
+                  width={['100%', '100%', '100%', '100%']}
                 />
               </Column>
             </Row>
