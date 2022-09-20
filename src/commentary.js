@@ -58,7 +58,7 @@ const Commentary = ({
         as='article'
         sx={{
           px: [0, 0, 0],
-          pt: [0, 5, '100px'],
+          mt: [4, 6, 7, 8],
         }}
       >
         <Row>
@@ -66,7 +66,11 @@ const Commentary = ({
             <Column
               start={[1, 2, 4, 4]}
               width={[6, 6, 6, 6]}
-              sx={{ order: [4, 2, 2, 2], mb: ['16px', 0] }}
+              sx={{
+                order: [4, 2, 2, 2],
+                mt: [0, 0, 0, '2px'],
+                mb: ['16px', 0],
+              }}
             >
               <LinkGroup color='secondary' members={meta.links} />
             </Column>
@@ -77,8 +81,7 @@ const Commentary = ({
             width={[2, 1, 2, 2]}
             dr={1}
             sx={{
-              mb: [-3, 0, 0, 0],
-              mt: ['20px', 0, 0, 0],
+              mt: [0, 0, 0, '2px'],
               order: [1, 1, 1, 1],
             }}
           >
@@ -119,7 +122,7 @@ const Commentary = ({
             width={[4, 8, 12, 12]}
             sx={{ order: [2, 4, 4, 4] }}
           >
-            <Row columns={[4, 8, 12, 12]} sx={{ mt: ['21px', 0] }}>
+            <Row columns={[4, 8, 12, 12]} sx={{ mt: ['-3px', 0] }}>
               <Column
                 start={[1, 1, 2, 2]}
                 width={[2, 1, 2, 2]}
