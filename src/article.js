@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, Container, Divider, Themed } from 'theme-ui'
+import { Box, Text, Container, Divider } from 'theme-ui'
 import {
   Layout,
   Row,
@@ -253,7 +253,9 @@ const Article = ({
             </Row>
             <ReferencesProvider color={meta.color} references={references}>
               <Box as='article'>
-                <Themed.h1>{displayTitle || meta.title}</Themed.h1>
+                <Box as='h1' variant='styles.h1'>
+                  {displayTitle || meta.title}
+                </Box>
                 {meta.links && (
                   <LinkGroup
                     color={meta.color}

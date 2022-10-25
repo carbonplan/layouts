@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Divider, Themed } from 'theme-ui'
+import { Box, Divider } from 'theme-ui'
 import { Row, Column } from '@carbonplan/components'
 
 const Endnote = ({ label, children, divider }) => {
@@ -13,12 +13,16 @@ const Endnote = ({ label, children, divider }) => {
       <section>
         <Row columns={[6]}>
           <Column start={[1]} width={[6]}>
-            <Themed.h2>{label}</Themed.h2>
+            <Box as='h2' variant='styles.h2'>
+              {label}
+            </Box>
           </Column>
         </Row>
         <Row columns={[6]}>
           <Column start={[2]} width={[5]}>
-            <Themed.p as='span'>{children}</Themed.p>
+            <Box as='span' variant='styles.p'>
+              {children}
+            </Box>
           </Column>
         </Row>
       </section>
