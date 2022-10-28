@@ -27,7 +27,7 @@ const PullQuote = ({ color, children }) => {
     >
       <Box
         sx={{
-          '&, & > :first-child': {
+          '&, & > p': {
             fontFamily: 'heading',
             fontSize: [5],
             lineHeight: 'heading',
