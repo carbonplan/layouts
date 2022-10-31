@@ -31,10 +31,10 @@
     }
   },
   "dependencies": {
-    "@carbonplan/icons": "2.0.0-develop.1"
+    "@carbonplan/icons": "^2.0.0"
   },
   "peerDependencies": {
-    "@carbonplan/components": "12.0.0-develop.3",
+    "@carbonplan/components": "^12.0.0",
     "react": ">=18",
     "react-dom": ">=18",
     "theme-ui": ">=0.15.0"
