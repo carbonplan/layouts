@@ -56,26 +56,28 @@ const Sidebar = ({
 
   return (
     <>
-      <SidebarAttachment
-        width={width}
-        side={side}
-        expanded={expanded}
-        sx={{ bottom: ['18px', '18px', '18px', '16px'] }}
-      >
-        <Button
-          onClick={handleToggleExpanded}
-          prefix={side === 'left' ? icon : null}
-          suffix={side === 'right' ? icon : null}
-          size='sm'
-          sx={{
-            display: ['none', 'none', 'inline-block', 'inline-block'],
-            cursor: 'pointer',
-            color: 'primary',
-          }}
+      {setExpanded && (
+        <SidebarAttachment
+          width={width}
+          side={side}
+          expanded={expanded}
+          sx={{ bottom: ['18px', '18px', '18px', '16px'] }}
         >
-          {expanded ? null : tooltip}
-        </Button>
-      </SidebarAttachment>
+          <Button
+            onClick={handleToggleExpanded}
+            prefix={side === 'left' ? icon : null}
+            suffix={side === 'right' ? icon : null}
+            size='sm'
+            sx={{
+              display: ['none', 'none', 'inline-block', 'inline-block'],
+              cursor: 'pointer',
+              color: 'primary',
+            }}
+          >
+            {expanded ? null : tooltip}
+          </Button>
+        </SidebarAttachment>
+      )}
       <Row>
         <Column width={width} start={1}>
           <Box
