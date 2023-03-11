@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { Box, Flex } from 'theme-ui'
-import { Button, Row, Column, getScrollbarWidth } from '@carbonplan/components'
+import { Button, Row, Column } from '@carbonplan/components'
 import { ArrowThin } from '@carbonplan/icons'
 
 import SidebarAttachment from './sidebar-attachment'
@@ -15,9 +15,6 @@ const Sidebar = ({
   side = 'left',
   width = 3,
 }) => {
-  const [customScrollbar] = useState(
-    () => document && getScrollbarWidth(document) > 0
-  )
   const handleToggleExpanded = useCallback(() => {
     if (!expanded) {
       setExpanded(true)
@@ -59,26 +56,28 @@ const Sidebar = ({
 
   return (
     <>
-      <SidebarAttachment
-        width={width}
-        side={side}
-        expanded={expanded}
-        sx={{ bottom: ['18px', '18px', '18px', '16px'] }}
-      >
-        <Button
-          onClick={handleToggleExpanded}
-          prefix={side === 'left' ? icon : null}
-          suffix={side === 'right' ? icon : null}
-          size='sm'
-          sx={{
-            display: ['none', 'none', 'inline-block', 'inline-block'],
-            cursor: 'pointer',
-            color: 'primary',
-          }}
+      {setExpanded && (
+        <SidebarAttachment
+          width={width}
+          side={side}
+          expanded={expanded}
+          sx={{ bottom: ['18px', '18px', '18px', '16px'] }}
         >
-          {expanded ? null : tooltip}
-        </Button>
-      </SidebarAttachment>
+          <Button
+            onClick={handleToggleExpanded}
+            prefix={side === 'left' ? icon : null}
+            suffix={side === 'right' ? icon : null}
+            size='sm'
+            sx={{
+              display: ['none', 'none', 'inline-block', 'inline-block'],
+              cursor: 'pointer',
+              color: 'primary',
+            }}
+          >
+            {expanded ? null : tooltip}
+          </Button>
+        </SidebarAttachment>
+      )}
       <Row>
         <Column width={width} start={1}>
           <Box
@@ -157,7 +156,6 @@ const Sidebar = ({
                     >
                       <Row
                         columns={width}
-                        className={customScrollbar ? 'custom-scrollbar' : null}
                         sx={{
                           flex: '0 0 auto',
                           height: '100%',
@@ -166,9 +164,6 @@ const Sidebar = ({
                           py: [4],
                           px: [4, 5, 5, 6],
                           mx: [-4, -5, -5, -6],
-                          '&::-webkit-scrollbar-corner': customScrollbar
-                            ? { background: 'rgb(0, 0, 0, 0)' }
-                            : {},
                         }}
                       >
                         <Column width={4} start={1}>
