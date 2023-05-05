@@ -5,8 +5,6 @@
 
 # carbonplan / layouts
 
-_pre release_
-
 **page layout components for documents and tools**
 
 [![GitHub][github-badge]][github]
@@ -56,6 +54,7 @@ Here are all the components currently available, grouped by where we tend to use
 `Endnote`
 `Cite`
 `PullQuote`
+`Sidenote`
 
 ### interactive tools
 
@@ -70,6 +69,9 @@ Here are all the components currently available, grouped by where we tend to use
 `NavSection`
 `NavMenu`
 
-### map sites
+### tool sites
 
-[coming soon]
+`Sidebar`
+`SidebarAttachment`
+`SidebarFooter`
+`SidebarDivider`
