@@ -48,6 +48,7 @@ const Commentary = ({
       card={`${prefix}/social/commentary/${meta.card}.png`}
       description={meta.summary}
       title={meta.title + ' – CarbonPlan'}
+      url={meta.path ? `https://carbonplan.org${meta.path}` : null}
       links={'local'}
       metadata={'scroll'}
       nav={'research'}

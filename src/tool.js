@@ -23,6 +23,7 @@ const Tool = ({
       metadata={false}
       description={meta.quickLook + '.'}
       title={meta.title + ' – CarbonPlan'}
+      url={meta.path ? `https://carbonplan.org${meta.path}` : null}
       links={'local'}
       nav={'research'}
       {...props}

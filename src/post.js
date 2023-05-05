@@ -76,6 +76,7 @@ const Post = ({ back = '/blog', children, meta, number, ...props }) => {
           ? `${prefix}/social/blog/${meta.card}.png`
           : 'https://images.carbonplan.org/social/blog.png'
       }
+      url={meta.path ? `https://carbonplan.org${meta.path}` : null}
       description={meta.summary}
       title={meta.title + ' – CarbonPlan'}
       links={'local'}
