@@ -27,7 +27,7 @@ const Article = ({
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
-      url={`https://carbonplan.org${meta.path}`}
+      url={meta.path ? `https://carbonplan.org${meta.path}` : null}
       description={meta.quickLook + '.'}
       title={meta.title + ' – CarbonPlan'}
       links={'local'}
