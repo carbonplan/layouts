@@ -1,6 +1,6 @@
 {
   "name": "@carbonplan/layouts",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "page layout components for reusable content",
   "type": "module",
   "main": "dst/index.cjs",
