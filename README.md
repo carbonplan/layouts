@@ -1,23 +1,18 @@
-<img
-  src='https://carbonplan-assets.s3.amazonaws.com/monogram/dark-small.png'
-  height='48'
-/>
+<p align="left" >
+<a href='https://carbonplan.org'>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://carbonplan-assets.s3.amazonaws.com/monogram/light-small.png">
+  <img alt="CarbonPlan monogram." height="48" src="https://carbonplan-assets.s3.amazonaws.com/monogram/dark-small.png">
+</picture>
+</a>
+</p>
 
 # carbonplan / layouts
 
 **page layout components for documents and tools**
 
-[![GitHub][github-badge]][github]
-[![Build Status]][actions]
-![MIT License][]
-![NPM Version][]
-
-[github]: https://github.com/carbonplan/layouts
-[github-badge]: https://badgen.net/badge/-/github?icon=github&label
-[build status]: https://github.com/carbonplan/layouts/actions/workflows/main.yml/badge.svg
-[actions]: https://github.com/carbonplan/layouts/actions/workflows/main.yml
-[mit license]: https://badgen.net/badge/license/MIT/blue
-[npm version]: https://badgen.net/npm/v/@carbonplan/layouts
+![NPM Version](https://img.shields.io/npm/v/@carbonplan/layouts)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Reusable [`react`](https://github.com/facebook/react) components for common layouts, such as those used in our articles, tools, blog posts, and maps. All the components here either wrap the base `Layout` from `@carbonplan/components` directly, or are linked in their design constraints to one of the layouts in this package that do so. Similar to those in the [`@carbonplan/components`](https://github.com/carbonplan/components) package, these components assume and make extensive use of [`theme-ui`](https://github.com/system-ui/theme-ui) and [`next`](https://github.com/vercel/next.js), and are meant to be composed with our [`theme`](https://github.com/carbonplan/theme). These components also work particularly well with MDX, which we use for authoring lots of our content.
 
@@ -75,3 +70,11 @@ Here are all the components currently available, grouped by where we tend to use
 `SidebarAttachment`
 `SidebarFooter`
 `SidebarDivider`
+
+## license
+
+All the code in this repository is [MIT](https://choosealicense.com/licenses/mit/)-licensed, but we request that you please provide attribution if reusing any of our digital content (graphics, logo, articles, etc.).
+
+## about us
+
+CarbonPlan is a nonprofit organization that uses data and science for climate action. We aim to improve the transparency and scientific integrity of climate solutions with open data and tools. Find out more at [carbonplan.org](https://carbonplan.org/) or get in touch by [opening an issue](https://github.com/carbonplan/compliance-users/issues/new) or [sending us an email](mailto:hello@carbonplan.org).
