@@ -23,6 +23,27 @@ export const useReference = (id, first) => {
     mode,
   }
 }
+export const useReferenceGroup = (ids) => {
+  const { references, color, getNumber, getSide, mode } = useContext(References)
+  const first = ids[0]
+
+  return ids.map((id) => {
+    const reference = references[id]
+    if (!reference) {
+      throw Error(`referencee ${id} not found`)
+    }
+
+    const number = getNumber(id)
+
+    return {
+      reference,
+      number,
+      color,
+      side: getSide(id, first),
+      mode,
+    }
+  })
+}
 
 export const useSidenote = (sidenote, url) => {
   const { color, mode, getSide, registerSidenote } = useContext(References)
