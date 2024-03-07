@@ -79,7 +79,7 @@ const CiteGroup = ({ ids, hide = [], ...props }) => {
 
   return groups.map(({ group, start }, i) => {
     return (
-      <>
+      <Box as='span' key={start}>
         {i > 0 && <CiteSeparator sep=',' />}
 
         {group.length === 1 && <CiteInner {...group[0]} hide={hide[start]} />}
@@ -115,7 +115,7 @@ const CiteGroup = ({ ids, hide = [], ...props }) => {
             />
           </>
         )}
-      </>
+      </Box>
     )
   })
 }
