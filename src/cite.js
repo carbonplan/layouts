@@ -111,7 +111,7 @@ const CiteGroup = ({ ids, hide = [], ...props }) => {
             <CiteSeparator sep='-' sx={sx.desktop} />
             <CiteInner
               {...group[group.length - 1]}
-              hide={hide[start + group.length]}
+              hide={hide[start + group.length - 1]}
             />
           </>
         )}
