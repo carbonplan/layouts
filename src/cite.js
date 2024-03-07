@@ -150,7 +150,7 @@ const Cite = ({ id, ids, ...props }) => {
   }
 
   if (id) {
-    return <CiteInner id={id} {...props} />
+    return <SingleCite id={id} {...props} />
   }
 
   const count = ids.length
@@ -158,7 +158,7 @@ const Cite = ({ id, ids, ...props }) => {
   if (count === 0) {
     throw Error('array of ids is empty')
   } else if (count === 1) {
-    return <CiteInner id={ids[0]} {...props} />
+    return <SingleCite id={ids[0]} {...props} />
   }
 
   let hide
@@ -170,7 +170,6 @@ const Cite = ({ id, ids, ...props }) => {
     hide = new Array(count).fill(props.hide)
   }
 
-  console.log(ids)
   if (count === 2) {
     return (
       <>
