@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Box } from 'theme-ui'
-import { useReference, useReferences } from './references'
+import { useReference, useReferenceGroup, useReferences } from './references'
 import InlineNote from './inline-note'
 
 const sx = {
@@ -18,8 +18,15 @@ const sx = {
   },
 }
 
-const CiteInner = ({ id, data, first, ...props }) => {
-  const { reference, number, color, side, mode } = useReference(id, first)
+const CiteInner = ({
+  reference,
+  number,
+  color,
+  side,
+  mode,
+  data = {},
+  ...props
+}) => {
   const { url, note, authors, year, title, journal, editors } =
     reference || data
 
@@ -37,6 +44,80 @@ const CiteInner = ({ id, data, first, ...props }) => {
       {editors ? `edited by ${editors}` : ''}
     </InlineNote>
   )
+}
+
+const SingleCite = ({ id, data, first, ...props }) => {
+  const fullReference = useReference(id, first)
+
+  return <CiteInner {...fullReference} {...props} data={data} />
+}
+
+const CiteGroup = ({ ids, hide = [], ...props }) => {
+  const references = useReferenceGroup(ids)
+  const groups = useMemo(() => {
+    return references.reduce((accum, reference) => {
+      let currentGroup = accum[accum.length - 1]
+      if (!currentGroup) {
+        currentGroup = { group: [reference], start: 0 }
+        accum.push(currentGroup)
+      } else if (
+        currentGroup.group[currentGroup.group.length - 1].number + 1 ===
+        reference.number
+      ) {
+        currentGroup.group.push(reference)
+      } else {
+        currentGroup = {
+          group: [reference],
+          start: currentGroup.start + currentGroup.group.length,
+        }
+        accum.push(currentGroup)
+      }
+
+      return accum
+    }, [])
+  }, [references])
+
+  return groups.map(({ group, start }, i) => {
+    return (
+      <Box as='span' key={start}>
+        {i > 0 && <CiteSeparator sep=',' />}
+
+        {group.length === 1 && <CiteInner {...group[0]} hide={hide[start]} />}
+
+        {group.length === 2 && (
+          <>
+            <CiteInner {...group[0]} hide={hide[start]} />
+            <CiteSeparator sep=',' />
+            <CiteInner {...group[1]} hide={hide[start + 1]} />
+          </>
+        )}
+
+        {group.length > 2 && (
+          <>
+            <CiteInner {...group[0]} hide={hide[start]} />
+            {group.slice(1, group.length - 1).map((fullReference, j) => (
+              <Box as='span' key={ids[start + j + 1]}>
+                <CiteSeparator sep=',' sx={sx.mobile} />
+                <CiteInner
+                  {...fullReference}
+                  sxLabel={sx.mobile}
+                  {...props}
+                  hide={hide[start + j + 1]}
+                />
+              </Box>
+            ))}
+
+            <CiteSeparator sep=',' sx={sx.mobile} />
+            <CiteSeparator sep='-' sx={sx.desktop} />
+            <CiteInner
+              {...group[group.length - 1]}
+              hide={hide[start + group.length - 1]}
+            />
+          </>
+        )}
+      </Box>
+    )
+  })
 }
 
 const CiteSeparator = ({ sep = ',', sx }) => {
@@ -69,7 +150,7 @@ const Cite = ({ id, ids, ...props }) => {
   }
 
   if (id) {
-    return <CiteInner id={id} {...props} />
+    return <SingleCite id={id} {...props} />
   }
 
   const count = ids.length
@@ -77,7 +158,7 @@ const Cite = ({ id, ids, ...props }) => {
   if (count === 0) {
     throw Error('array of ids is empty')
   } else if (count === 1) {
-    return <CiteInner id={ids[0]} {...props} />
+    return <SingleCite id={ids[0]} {...props} />
   }
 
   let hide
@@ -92,47 +173,23 @@ const Cite = ({ id, ids, ...props }) => {
   if (count === 2) {
     return (
       <>
-        <CiteInner id={ids[0]} {...props} hide={hide[0]} />
+        <SingleCite id={ids[0]} {...props} hide={hide[0]} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[1]} first={ids[0]} {...props} hide={hide[1]} />
+        <SingleCite id={ids[1]} first={ids[0]} {...props} hide={hide[1]} />
       </>
     )
   } else if (count === 3) {
     return (
       <>
-        <CiteInner id={ids[0]} {...props} hide={hide[0]} />
+        <SingleCite id={ids[0]} {...props} hide={hide[0]} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[1]} first={ids[0]} {...props} hide={hide[1]} />
+        <SingleCite id={ids[1]} first={ids[0]} {...props} hide={hide[1]} />
         <CiteSeparator sep=',' />
-        <CiteInner id={ids[2]} first={ids[0]} {...props} hide={hide[2]} />
+        <SingleCite id={ids[2]} first={ids[0]} {...props} hide={hide[2]} />
       </>
     )
   } else {
-    return (
-      <>
-        <CiteInner id={ids[0]} {...props} hide={hide[0]} />
-        {ids.slice(1, count - 1).map((d, i) => (
-          <Box as='span' key={d}>
-            <CiteSeparator sep=',' sx={sx.mobile} />
-            <CiteInner
-              id={d}
-              sxLabel={sx.mobile}
-              first={ids[0]}
-              {...props}
-              hide={hide[i + 1]}
-            />
-          </Box>
-        ))}
-        <CiteSeparator sep=',' sx={sx.mobile} />
-        <CiteSeparator sep='-' sx={sx.desktop} />
-        <CiteInner
-          id={ids[count - 1]}
-          first={ids[0]}
-          {...props}
-          hide={hide[count - 1]}
-        />
-      </>
-    )
+    return <CiteGroup ids={ids} hide={hide} />
   }
 }
 
