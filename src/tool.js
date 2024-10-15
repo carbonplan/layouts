@@ -22,9 +22,7 @@ const Tool = ({
       card={`${prefix}/social/${meta.card}.png`}
       metadata={false}
       description={
-        meta.quickLook?.endsWith('.')
-          ? metadata.quickLook
-          : metadata.quickLook + '.'
+        meta.quickLook?.endsWith('.') ? meta.quickLook : meta.quickLook + '.'
       }
       title={meta.title + ' – CarbonPlan'}
       url={meta.path ? `https://carbonplan.org${meta.path}` : null}

@@ -29,9 +29,7 @@ const Article = ({
       card={`${prefix}/social/${meta.card}.png`}
       url={meta.path ? `https://carbonplan.org${meta.path}` : null}
       description={
-        meta.quickLook?.endsWith('.')
-          ? metadata.quickLook
-          : metadata.quickLook + '.'
+        meta.quickLook?.endsWith('.') ? meta.quickLook : meta.quickLook + '.'
       }
       title={meta.title + ' – CarbonPlan'}
       links={'local'}
