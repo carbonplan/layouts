@@ -11,7 +11,11 @@ const Supplement = ({ back = '/research', children, meta, ...props }) => {
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
       url={meta.path ? `https://carbonplan.org${meta.path}` : null}
-      description={meta.quickLook + '.'}
+      description={
+        meta.quickLook?.endsWith('.')
+          ? metadata.quickLook
+          : metadata.quickLook + '.'
+      }
       title={meta.title + ' – CarbonPlan'}
       links={'local'}
       metadata={'scroll'}
