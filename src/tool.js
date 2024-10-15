@@ -21,7 +21,11 @@ const Tool = ({
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
       metadata={false}
-      description={meta.quickLook + '.'}
+      description={
+        meta.quickLook?.endsWith('.')
+          ? metadata.quickLook
+          : metadata.quickLook + '.'
+      }
       title={meta.title + ' – CarbonPlan'}
       url={meta.path ? `https://carbonplan.org${meta.path}` : null}
       links={'local'}
