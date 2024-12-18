@@ -69,13 +69,13 @@ const Post = ({ back = '/blog', children, meta, number, ...props }) => {
     }
   })
 
+  const ogImageUrl = `/api/og?title=${meta.title}&date=${
+    meta.date
+  }&authors=${meta.authors.map((author) => author.name ?? author).join(',')}`
+
   return (
     <Layout
-      card={
-        meta.card
-          ? `${prefix}/social/blog/${meta.card}.png`
-          : 'https://images.carbonplan.org/social/blog.png'
-      }
+      card={meta.card ? `${prefix}/social/blog/${meta.card}.png` : ogImageUrl}
       url={meta.path ? `https://carbonplan.org${meta.path}` : null}
       description={meta.summary}
       title={meta.title + ' – CarbonPlan'}
