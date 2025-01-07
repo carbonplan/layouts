@@ -57,7 +57,7 @@ const Authors = ({ authors }) => {
   )
 }
 
-const Post = ({ back = '/blog', children, meta, number, ...props }) => {
+const Post = ({ back = '/blog', children, meta, number, id, ...props }) => {
   const colors = ['red', 'orange', 'yellow', 'pink']
   const avatars = meta.authors.map((d, i) => {
     const color = colors[(number + i) % 4]
@@ -68,14 +68,13 @@ const Post = ({ back = '/blog', children, meta, number, ...props }) => {
       return { id: name, src, color }
     }
   })
-
-  const ogImageUrl = `/api/og?title=${meta.title}&date=${
-    meta.date
-  }&authors=${meta.authors.map((author) => author.name ?? author).join(',')}`
+  const cardUrl = meta.card
+    ? `${prefix}/social/blog/${meta.card}.png`
+    : `/api/og?id=${id}`
 
   return (
     <Layout
-      card={meta.card ? `${prefix}/social/blog/${meta.card}.png` : ogImageUrl}
+      card={cardUrl}
       url={meta.path ? `https://carbonplan.org${meta.path}` : null}
       description={meta.summary}
       title={meta.title + ' – CarbonPlan'}
