@@ -8,6 +8,8 @@ const BLOG_POST_FONTS = [
   { path: 'relative-mono-11-pitch-pro.woff', type: 'mono', name: 'mono' },
 ]
 
+export const AUTHOR_COLORS = ['red', 'orange', 'yellow', 'pink']
+
 const fetchFont = async (fontPath, fontType) => {
   const headers = new Headers({ Referer: 'https://carbonplan.org/' })
   const res = await fetch(`https://fonts.carbonplan.org/relative/${fontPath}`, {
@@ -35,7 +37,7 @@ export const getBlogPostFonts = async () => {
   }
 }
 
-export const BlogPostOG = ({ title, date, authors, authorColors }) => {
+export const BlogPostOG = ({ title, date, authors }) => {
   const wrapAuthors = authors.length > 3
 
   return (
@@ -116,7 +118,7 @@ export const BlogPostOG = ({ title, date, authors, authorColors }) => {
               key={author}
               style={{
                 display: 'flex',
-                color: theme.colors[authorColors[i % 4]],
+                color: theme.colors[AUTHOR_COLORS[i % 4]],
               }}
             >
               {author}
