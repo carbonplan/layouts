@@ -71,7 +71,9 @@ const Post = ({ back = '/blog', children, meta, number, id, ...props }) => {
   const forceWrapAuthors = meta.forceWrapAuthors || false
   const cardUrl = meta.card
     ? `${prefix}/social/blog/${meta.card}.png`
-    : `/api/og?id=${id}${forceWrapAuthors ? '&forceWrapAuthors=true' : ''}`
+    : `https://blog.carbonplan.org/api/og?id=${id}${
+        forceWrapAuthors ? '&forceWrapAuthors=true' : ''
+      }`
 
   return (
     <Layout
