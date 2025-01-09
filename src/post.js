@@ -57,7 +57,7 @@ const Authors = ({ authors }) => {
   )
 }
 
-const Post = ({ back = '/blog', children, meta, number, ...props }) => {
+const Post = ({ back = '/blog', children, meta, number, id, ...props }) => {
   const colors = ['red', 'orange', 'yellow', 'pink']
   const avatars = meta.authors.map((d, i) => {
     const color = colors[(number + i) % 4]
@@ -68,14 +68,17 @@ const Post = ({ back = '/blog', children, meta, number, ...props }) => {
       return { id: name, src, color }
     }
   })
+  const notProduction = process.env.VERCEL_ENV !== 'production'
+  const baseUrl = notProduction ? '' : 'https://blog.carbonplan.org'
+  const cardUrl = meta.card
+    ? `${prefix}/social/blog/${meta.card}.png`
+    : `${baseUrl}/api/og?id=${id}${
+        meta.forceWrapAuthors ? '&forceWrapAuthors=true' : ''
+      }`
 
   return (
     <Layout
-      card={
-        meta.card
-          ? `${prefix}/social/blog/${meta.card}.png`
-          : 'https://images.carbonplan.org/social/blog.png'
-      }
+      card={cardUrl}
       url={meta.path ? `https://carbonplan.org${meta.path}` : null}
       description={meta.summary}
       title={meta.title + ' – CarbonPlan'}
