@@ -68,10 +68,8 @@ const Post = ({ back = '/blog', children, meta, number, id, ...props }) => {
       return { id: name, src, color }
     }
   })
-  const isPreviewOrDev =
-    process.env.VERCEL_ENV === 'preview' ||
-    process.env.VERCEL_ENV === 'development'
-  const baseUrl = isPreviewOrDev ? '' : 'https://blog.carbonplan.org'
+  const notProduction = process.env.VERCEL_ENV !== 'production'
+  const baseUrl = notProduction ? '' : 'https://blog.carbonplan.org'
   const cardUrl = meta.card
     ? `${prefix}/social/blog/${meta.card}.png`
     : `${baseUrl}/api/og?id=${id}${
