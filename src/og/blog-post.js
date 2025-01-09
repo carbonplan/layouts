@@ -1,41 +1,15 @@
 import React from 'react'
 import { formatDate } from '@carbonplan/components'
 import theme from '@carbonplan/theme'
+import { getFonts } from './utils/get-og-fonts'
 
-const BLOG_POST_FONTS = [
-  { path: 'relative-medium-pro.woff', type: 'medium', name: 'heading' },
-  { path: 'relative-faux-book-pro.woff', type: 'faux', name: 'faux' },
-  { path: 'relative-mono-11-pitch-pro.woff', type: 'mono', name: 'mono' },
+const FONTS = [
+  { path: 'relative-medium-pro.woff', name: 'medium' },
+  { path: 'relative-faux-book-pro.woff', name: 'faux' },
+  { path: 'relative-mono-11-pitch-pro.woff', name: 'mono' },
 ]
 
-export const AUTHOR_COLORS = ['red', 'orange', 'yellow', 'pink']
-
-const fetchFont = async (fontPath, fontType) => {
-  const headers = new Headers({ Referer: 'https://carbonplan.org/' })
-  const res = await fetch(`https://fonts.carbonplan.org/relative/${fontPath}`, {
-    cache: 'force-cache',
-    headers,
-  })
-
-  if (!res.ok) throw new Error(`Failed to load ${fontType} font: ${res.status}`)
-  return res.arrayBuffer()
-}
-
-export const getBlogPostFonts = async () => {
-  try {
-    const fontData = await Promise.all(
-      BLOG_POST_FONTS.map(({ path, type }) => fetchFont(path, type))
-    )
-
-    return BLOG_POST_FONTS.map(({ name }, index) => ({
-      name,
-      data: fontData[index],
-    }))
-  } catch (error) {
-    console.error('Error loading blog post fonts:', error)
-    throw error
-  }
-}
+const AUTHOR_COLORS = ['red', 'orange', 'yellow', 'pink']
 
 export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
   const wrapAuthors = forceWrapAuthors || authors.length > 3
@@ -87,7 +61,7 @@ export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
               fontSize: '64px',
               marginTop: '44px',
               color: theme.colors.primary,
-              fontFamily: 'heading',
+              fontFamily: 'medium',
               letterSpacing: '-0.015em',
               lineHeight: '1.05',
             }}
@@ -178,4 +152,29 @@ export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
       </div>
     </div>
   )
+}
+
+export const getBlogPostCard = async ({
+  title,
+  date,
+  authors,
+  forceWrapAuthors,
+}) => {
+  const fonts = await getFonts(FONTS)
+
+  return {
+    component: (
+      <BlogPostOG
+        title={title}
+        date={date}
+        authors={authors}
+        forceWrapAuthors={forceWrapAuthors}
+      />
+    ),
+    fonts,
+    options: {
+      width: 1200,
+      height: 630,
+    },
+  }
 }
