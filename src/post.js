@@ -68,9 +68,10 @@ const Post = ({ back = '/blog', children, meta, number, id, ...props }) => {
       return { id: name, src, color }
     }
   })
+  const forceWrapAuthors = meta.forceWrapAuthors || false
   const cardUrl = meta.card
     ? `${prefix}/social/blog/${meta.card}.png`
-    : `/api/og?id=${id}`
+    : `/api/og?id=${id}${forceWrapAuthors ? '&forceWrapAuthors=true' : ''}`
 
   return (
     <Layout

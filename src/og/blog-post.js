@@ -37,8 +37,8 @@ export const getBlogPostFonts = async () => {
   }
 }
 
-export const BlogPostOG = ({ title, date, authors }) => {
-  const wrapAuthors = authors.length > 3
+export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
+  const wrapAuthors = forceWrapAuthors || authors.length > 3
 
   return (
     <div
