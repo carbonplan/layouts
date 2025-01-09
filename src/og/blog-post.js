@@ -90,10 +90,6 @@ export const BlogPostOG = ({ title, date, authors }) => {
               fontFamily: 'heading',
               letterSpacing: '-0.015em',
               lineHeight: '1.05',
-              display: '-webkit-box',
-              WebkitLineClamp: 4,
-              WebkitBoxOrient: 'vertical',
-              textOverflow: 'ellipsis',
             }}
           >
             {title}
