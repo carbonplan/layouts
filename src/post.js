@@ -68,11 +68,14 @@ const Post = ({ back = '/blog', children, meta, number, id, ...props }) => {
       return { id: name, src, color }
     }
   })
-  const forceWrapAuthors = meta.forceWrapAuthors || false
+  const isPreviewOrDev =
+    process.env.VERCEL_ENV === 'preview' ||
+    process.env.VERCEL_ENV === 'development'
+  const baseUrl = isPreviewOrDev ? '' : 'https://blog.carbonplan.org'
   const cardUrl = meta.card
     ? `${prefix}/social/blog/${meta.card}.png`
-    : `https://blog.carbonplan.org/api/og?id=${id}${
-        forceWrapAuthors ? '&forceWrapAuthors=true' : ''
+    : `${baseUrl}/api/og?id=${id}${
+        meta.forceWrapAuthors ? '&forceWrapAuthors=true' : ''
       }`
 
   return (
