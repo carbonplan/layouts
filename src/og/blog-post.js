@@ -11,9 +11,13 @@ const FONTS = [
 
 const AUTHOR_COLORS = ['red', 'orange', 'yellow', 'pink']
 
-export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
-  const wrapAuthors = forceWrapAuthors || authors.length > 3
-
+export const BlogPostOG = ({
+  title,
+  date,
+  authors,
+  collapseCardAuthors,
+  number,
+}) => {
   return (
     <div
       style={{
@@ -22,6 +26,7 @@ export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
         justifyContent: 'space-between',
         height: '100%',
         width: '100%',
+        maxWidth: '1200px',
         paddingLeft: '78px',
         paddingRight: '78px',
         paddingTop: '55px',
@@ -31,6 +36,7 @@ export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
     >
       <div
         style={{
+          width: '800px',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
@@ -57,7 +63,6 @@ export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
           </div>
           <h1
             style={{
-              maxWidth: '800px',
               fontSize: '64px',
               marginTop: '44px',
               color: theme.colors.primary,
@@ -72,7 +77,7 @@ export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
         <div
           style={{
             display: 'flex',
-            flexDirection: wrapAuthors ? 'row' : 'column',
+            flexDirection: collapseCardAuthors ? 'row' : 'column',
             flexWrap: 'wrap',
             fontFamily: 'mono',
             textTransform: 'uppercase',
@@ -88,7 +93,7 @@ export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
               key={author}
               style={{
                 display: 'flex',
-                color: theme.colors[AUTHOR_COLORS[i % 4]],
+                color: theme.colors[AUTHOR_COLORS[(number + i) % 4]],
               }}
             >
               {author}
@@ -109,6 +114,7 @@ export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
       </div>
       <div
         style={{
+          width: '150px',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
@@ -132,6 +138,8 @@ export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
 
         <div
           style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
             fontFamily: 'mono',
             textTransform: 'uppercase',
             color: theme.colors.secondary,
@@ -139,8 +147,9 @@ export const BlogPostOG = ({ title, date, authors, forceWrapAuthors }) => {
             letterSpacing: '0.07em',
             transform: 'rotate(90deg)',
             transformOrigin: 'right',
-            marginRight: '12px',
+            marginRight: '10px',
             marginBottom: '-18px',
+            width: '250px',
           }}
         >
           {formatDate(date, {
@@ -158,7 +167,8 @@ export const getBlogPostCard = async ({
   title,
   date,
   authors,
-  forceWrapAuthors,
+  collapseCardAuthors,
+  number,
 }) => {
   const fonts = await getFonts(FONTS)
 
@@ -168,13 +178,15 @@ export const getBlogPostCard = async ({
         title={title}
         date={date}
         authors={authors}
-        forceWrapAuthors={forceWrapAuthors}
+        collapseCardAuthors={collapseCardAuthors}
+        number={number}
       />
     ),
     fonts,
     options: {
       width: 1200,
       height: 630,
+      //   debug: true,
     },
   }
 }
