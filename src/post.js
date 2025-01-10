@@ -70,11 +70,7 @@ const Post = ({ back = '/blog', children, meta, number, id, ...props }) => {
   })
   const notProduction = process.env.VERCEL_ENV !== 'production'
   const baseUrl = notProduction ? '' : 'https://blog.carbonplan.org'
-  const cardUrl = meta.card
-    ? `${prefix}/social/blog/${meta.card}.png`
-    : `${baseUrl}/api/og?id=${id}${
-        meta.forceWrapAuthors ? '&forceWrapAuthors=true' : ''
-      }`
+  const cardUrl = `${baseUrl}/api/og?id=${id}`
 
   return (
     <Layout
