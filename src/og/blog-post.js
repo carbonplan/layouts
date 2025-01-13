@@ -15,8 +15,9 @@ export const BlogPostOG = ({
   title,
   date,
   authors,
-  collapseCardAuthors,
   number,
+  collapseCardAuthors,
+  titleWidthOverride,
 }) => {
   return (
     <div
@@ -27,6 +28,7 @@ export const BlogPostOG = ({
         height: '100%',
         width: '100%',
         maxWidth: '1200px',
+        maxHeight: '630px',
         paddingLeft: '78px',
         paddingRight: '78px',
         paddingTop: '55px',
@@ -36,7 +38,6 @@ export const BlogPostOG = ({
     >
       <div
         style={{
-          width: '800px',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
@@ -63,6 +64,8 @@ export const BlogPostOG = ({
           </div>
           <h1
             style={{
+              width: titleWidthOverride ? `${titleWidthOverride}px` : '800px',
+              maxWidth: '894px', // prevent crashing into logo
               fontSize: '64px',
               marginTop: '44px',
               color: theme.colors.primary,
@@ -85,7 +88,7 @@ export const BlogPostOG = ({
             marginBottom: '-6px',
             lineHeight: '1.35',
             letterSpacing: '0.07em',
-            maxWidth: '800px',
+            maxWidth: '894px',
           }}
         >
           {authors.map((author, i) => (
@@ -120,6 +123,7 @@ export const BlogPostOG = ({
           justifyContent: 'space-between',
           alignItems: 'flex-end',
           height: '100%',
+          flexShrink: 0,
         }}
         id='right'
       >
@@ -169,6 +173,7 @@ export const getBlogPostCard = async ({
   authors,
   collapseCardAuthors,
   number,
+  titleWidthOverride,
 }) => {
   const fonts = await getFonts(FONTS)
 
@@ -180,13 +185,14 @@ export const getBlogPostCard = async ({
         authors={authors}
         collapseCardAuthors={collapseCardAuthors}
         number={number}
+        titleWidthOverride={titleWidthOverride}
       />
     ),
     fonts,
     options: {
       width: 1200,
       height: 630,
-      //   debug: true,
+      debug: true,
     },
   }
 }
