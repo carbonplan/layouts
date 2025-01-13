@@ -91,28 +91,33 @@ export const BlogPostOG = ({
             maxWidth: '894px',
           }}
         >
-          {authors.map((author, i) => (
-            <div
-              key={author}
-              style={{
-                display: 'flex',
-                color: theme.colors[AUTHOR_COLORS[(number + i) % 4]],
-              }}
-            >
-              {author}
-              {i < authors.length - 1 && (
-                <span
-                  style={{
-                    color: theme.colors.primary,
-                    marginLeft: '16px',
-                    marginRight: '16px',
-                  }}
-                >
-                  +
-                </span>
-              )}
-            </div>
-          ))}
+          {authors.map((author, i) => {
+            const isFirstLineItem =
+              collapseCardAuthors && authors.length === 3 && i === 0
+            return (
+              <div
+                key={author}
+                style={{
+                  display: 'flex',
+                  color: theme.colors[AUTHOR_COLORS[(number + i) % 4]],
+                  width: isFirstLineItem ? '100%' : 'auto',
+                }}
+              >
+                {author}
+                {i < authors.length - 1 && (
+                  <span
+                    style={{
+                      color: theme.colors.primary,
+                      marginLeft: '16px',
+                      marginRight: '16px',
+                    }}
+                  >
+                    +
+                  </span>
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
       <div
@@ -192,7 +197,7 @@ export const getBlogPostCard = async ({
     options: {
       width: 1200,
       height: 630,
-      debug: true,
+      debug: false,
     },
   }
 }
