@@ -70,9 +70,14 @@ const Post = ({ back = '/blog', children, meta, number, id, ...props }) => {
   })
   const notProduction = process.env.VERCEL_ENV !== 'production'
   const baseUrl = notProduction ? '' : 'https://blog.carbonplan.org'
+  const collapseCardAuthorsFallback = meta.forceWrapAuthors // fallback for old name for collapseCardAuthors
   const cardUrl = meta.card
     ? `${prefix}/social/blog/${meta.card}.png`
-    : `${baseUrl}/api/og?id=${id}`
+    : `${baseUrl}/api/og?id=${id}${
+        collapseCardAuthorsFallback
+          ? `&collapseCardAuthors=${collapseCardAuthorsFallback}`
+          : ''
+      }`
 
   return (
     <Layout
