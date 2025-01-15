@@ -20,7 +20,7 @@ export const SharedCard = ({
   titleWidthOverride,
   type = 'blog', // can be 'blog' or 'commentary'
 }) => {
-  const AUTHOR_COLORS =
+  const authorColors =
     type === 'blog' ? AUTHOR_COLORS_BLOG : AUTHOR_COLORS_COMMENTARY
   return (
     <div
@@ -105,7 +105,7 @@ export const SharedCard = ({
                   display: 'flex',
                   color:
                     theme.colors[
-                      AUTHOR_COLORS[(number + i) % AUTHOR_COLORS.length]
+                      authorColors[(number + i) % authorColors.length]
                     ],
                   width: isFirstLineItem ? '100%' : 'auto',
                 }}
