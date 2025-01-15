@@ -8,8 +8,7 @@ export const FONTS = [
   { path: 'relative-mono-11-pitch-pro.woff', name: 'mono' },
 ]
 
-const AUTHOR_COLORS_BLOG = ['red', 'orange', 'yellow', 'pink']
-const AUTHOR_COLORS_COMMENTARY = ['yellow']
+const BLOG_AUTHOR_COLORS = ['red', 'orange', 'yellow', 'pink']
 
 export const SharedCard = ({
   title,
@@ -19,9 +18,10 @@ export const SharedCard = ({
   collapseCardAuthors,
   titleWidthOverride,
   type = 'blog', // can be 'blog' or 'commentary'
+  color,
 }) => {
   const authorColors =
-    type === 'blog' ? AUTHOR_COLORS_BLOG : AUTHOR_COLORS_COMMENTARY
+    type === 'blog' ? BLOG_AUTHOR_COLORS : [color ?? 'secondary']
   return (
     <div
       style={{
