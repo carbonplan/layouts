@@ -45,7 +45,9 @@ const Commentary = ({
   const sx = getSx(meta.color)
 
   const notProduction = process.env.VERCEL_ENV !== 'production'
-  const baseUrl = notProduction ? '' : 'https://research.carbonplan.org'
+  const baseUrl = notProduction
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://research.carbonplan.org'
   const cardUrl = meta.card
     ? `${prefix}/social/commentary/${meta.card}.png`
     : `${baseUrl}/api/og/commentary?id=${id}`
