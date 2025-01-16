@@ -31,7 +31,8 @@
     }
   },
   "dependencies": {
-    "@carbonplan/icons": "^2.0.0"
+    "@carbonplan/icons": "^2.0.0",
+    "@carbonplan/theme": "^8.1.0"
   },
   "peerDependencies": {
     "@carbonplan/components": "^12.2.0",
