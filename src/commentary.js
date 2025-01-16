@@ -39,6 +39,7 @@ const Commentary = ({
   meta,
   references,
   displayTitle,
+  id,
   ...props
 }) => {
   const sx = getSx(meta.color)
@@ -47,7 +48,7 @@ const Commentary = ({
   const baseUrl = notProduction ? '' : 'https://research.carbonplan.org'
   const cardUrl = meta.card
     ? `${prefix}/social/commentary/${meta.card}.png`
-    : `${baseUrl}/api/og/commentary?id=${meta.id}`
+    : `${baseUrl}/api/og/commentary?id=${id}`
 
   return (
     <Layout
