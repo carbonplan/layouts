@@ -46,7 +46,7 @@ const Commentary = ({
 
   const notProduction = process.env.VERCEL_ENV !== 'production'
   const baseUrl = notProduction
-    ? `https://${process.env.VERCEL_URL}`
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
     : 'https://research.carbonplan.org'
   const cardUrl = meta.card
     ? `${prefix}/social/commentary/${meta.card}.png`
