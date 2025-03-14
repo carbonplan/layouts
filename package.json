@@ -1,6 +1,6 @@
 {
   "name": "@carbonplan/layouts",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "description": "page layout components for reusable content",
   "type": "module",
   "main": "dst/index.cjs",
@@ -35,7 +35,7 @@
     "@carbonplan/theme": "^8.1.0"
   },
   "peerDependencies": {
-    "@carbonplan/components": "^12.2.0",
+    "@carbonplan/components": ">=12.2.0",
     "react": ">=18",
     "react-dom": ">=18",
     "theme-ui": ">=0.15.0"
