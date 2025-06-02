@@ -124,6 +124,7 @@ const Sidebar = ({
                 pointerEvents: 'all',
                 bg: 'background',
                 overflow: 'hidden',
+                position: 'fixed',
                 maxHeight: 'calc(100vh - 56px)',
                 minHeight: 'calc(100vh - 56px)',
                 transition: 'border 0.2s',
