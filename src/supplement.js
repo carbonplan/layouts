@@ -3,10 +3,11 @@ import { Box, Divider } from 'theme-ui'
 import { Layout, Row, Column, Button, formatDate } from '@carbonplan/components'
 import { Left } from '@carbonplan/icons'
 import ReadMore from './read-more'
+import { ReferencesProvider } from './references'
 
 const prefix = 'https://images.carbonplan.org'
 
-const Supplement = ({ back = '/research', children, meta, ...props }) => {
+const Supplement = ({ back = '/research', children, meta, references = {}, ...props }) => {
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
@@ -61,7 +62,9 @@ const Supplement = ({ back = '/research', children, meta, ...props }) => {
           {formatDate(meta.date)}
         </Column>
         <Column start={[1, 2, 3, 3]} width={[6, 6, 6, 6]}>
-          <Box as='article'>{children}</Box>
+          <ReferencesProvider color={meta.color} references={references}>
+            <Box as='article'>{children}</Box>
+          </ReferencesProvider>
           <Divider sx={{ mt: [6, 6, 7, 7] }} />
           <ReadMore target='research' />
         </Column>
