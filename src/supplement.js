@@ -7,7 +7,13 @@ import { ReferencesProvider } from './references'
 
 const prefix = 'https://images.carbonplan.org'
 
-const Supplement = ({ back = '/research', children, meta, references = {}, ...props }) => {
+const Supplement = ({
+  back = '/research',
+  children,
+  meta,
+  references = {},
+  ...props
+}) => {
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
