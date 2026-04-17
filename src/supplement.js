@@ -12,6 +12,7 @@ const Supplement = ({
   children,
   meta,
   references = {},
+  topMt = 0,
   ...props
 }) => {
   return (
@@ -28,68 +29,73 @@ const Supplement = ({
       printable={true}
       {...props}
     >
-      <Row>
-        <Column
-          start={[1, 1]}
-          width={[2]}
-          dr={1}
-          sx={{ mb: [-2, -4, 0, 0], mt: [3, 4, '109px', '154px'] }}
-        >
-          <Button
-            onClick={() => {
-              if (window.history.state?.idx) {
-                window.history.back()
-              } else {
-                window.location.href = back
-              }
+      <Box sx={{ mt: topMt }}>
+        <Row sx={{ alignItems: 'baseline' }}>
+          <Column
+            start={[1, 1]}
+            width={[2]}
+            dr={1}
+            sx={{
+              mb: [-3, -3, 0, 0],
+              mt: [3, 3, 0, 0],
             }}
-            inverted
-            size='xs'
-            prefix={<Left />}
-            sx={{ ml: ['-2px', '-2px', '-2px', '-2px'] }}
           >
-            Back
-          </Button>
-        </Column>
-        <Column
-          start={[5, 7, 7, 7]}
-          width={[2]}
-          sx={{
-            mb: [-3, '-120px', 0, 0],
-            mt: [3, '91px', '106px', '119px'],
-            fontFamily: 'mono',
-            letterSpacing: 'mono',
-            textTransform: 'uppercase',
-            fontSize: [1, 1, 1, 2],
-            textAlign: 'right',
-            display: ['initial', 'initial', 'none', 'none'],
-          }}
-        >
-          {formatDate(meta.date)}
-        </Column>
-        <Column start={[1, 2, 3, 3]} width={[6, 6, 6, 6]}>
-          <ReferencesProvider color={meta.color} references={references}>
-            <Box as='article'>{children}</Box>
-          </ReferencesProvider>
-          <Divider sx={{ mt: [6, 6, 7, 7] }} />
-          <ReadMore target='research' />
-        </Column>
-        <Column
-          start={[1, 1, 10, 10]}
-          width={[6, 6, 2, 2]}
-          sx={{
-            mb: [-3, '-120px', 0, 0],
-            mt: [3, '91px', '106px', '119px'],
-            fontFamily: 'mono',
-            letterSpacing: 'mono',
-            textTransform: 'uppercase',
-            fontSize: [1, 1, 1, 2],
-            display: ['none', 'none', 'initial', 'intiial'],
-          }}
-        >
-          {formatDate(meta.date)}
-        </Column>
-      </Row>
+            <Button
+              onClick={() => {
+                if (window.history.state?.idx) {
+                  window.history.back()
+                } else {
+                  window.location.href = back
+                }
+              }}
+              inverted
+              size='xs'
+              prefix={<Left />}
+              sx={{ ml: ['-2px', '-2px', '-2px', '-2px'] }}
+            >
+              Back
+            </Button>
+          </Column>
+          <Column
+            start={[5, 7, 7, 7]}
+            width={[2]}
+            sx={{
+              mb: [-3, -3, 0, 0],
+              mt: [3, 3, 0, 0],
+              fontFamily: 'mono',
+              letterSpacing: 'mono',
+              textTransform: 'uppercase',
+              fontSize: [1, 1, 1, 2],
+              textAlign: 'right',
+              display: ['initial', 'initial', 'none', 'none'],
+            }}
+          >
+            {formatDate(meta.date)}
+          </Column>
+          <Column start={[1, 2, 3, 3]} width={[6, 6, 6, 6]}>
+            <ReferencesProvider color={meta.color} references={references}>
+              <Box as='article'>{children}</Box>
+            </ReferencesProvider>
+            <Divider sx={{ mt: [6, 6, 7, 7] }} />
+            <ReadMore target='research' />
+          </Column>
+          <Column
+            start={[1, 1, 10, 10]}
+            width={[6, 6, 2, 2]}
+            sx={{
+              mb: [-3, -3, 0, 0],
+              mt: [3, 3, 0, 0],
+              fontFamily: 'mono',
+              letterSpacing: 'mono',
+              textTransform: 'uppercase',
+              fontSize: [1, 1, 1, 2],
+              display: ['none', 'none', 'initial', 'initial'],
+            }}
+          >
+            {formatDate(meta.date)}
+          </Column>
+        </Row>
+      </Box>
     </Layout>
   )
 }
