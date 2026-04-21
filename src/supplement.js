@@ -12,7 +12,7 @@ const Supplement = ({
   children,
   meta,
   references = {},
-  topMt = 0,
+  sx,
   ...props
 }) => {
   return (
@@ -29,7 +29,7 @@ const Supplement = ({
       printable={true}
       {...props}
     >
-      <Box sx={{ mt: topMt }}>
+      <Box sx={sx}>
         <Row sx={{ alignItems: 'baseline' }}>
           <Column
             start={[1, 1]}
