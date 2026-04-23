@@ -9,6 +9,7 @@ const prefix = 'https://images.carbonplan.org'
 
 const Supplement = ({
   back = '/research',
+  banner,
   children,
   meta,
   references = {},
@@ -29,6 +30,7 @@ const Supplement = ({
       printable={true}
       {...props}
     >
+      {banner}
       <Box sx={sx}>
         <Row sx={{ alignItems: 'baseline' }}>
           <Column
