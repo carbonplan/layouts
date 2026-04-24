@@ -18,6 +18,7 @@ const prefix = 'https://images.carbonplan.org'
 
 const Article = ({
   back = '/research',
+  banner,
   children,
   meta,
   references,
@@ -38,6 +39,7 @@ const Article = ({
       printable={true}
       {...props}
     >
+      {banner}
       <Box
         sx={{
           backgroundColor: meta.color,
