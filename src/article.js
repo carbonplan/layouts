@@ -256,7 +256,11 @@ const Article = ({
                 </Box>
               </Column>
             </Row>
-            <ReferencesProvider color={meta.color} references={references}>
+            <ReferencesProvider
+              key={meta.title}
+              color={meta.color}
+              references={references}
+            >
               <Box as='article'>
                 <Box as='h1' variant='styles.h1'>
                   {displayTitle || meta.title}

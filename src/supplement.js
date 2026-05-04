@@ -75,7 +75,11 @@ const Supplement = ({
             {formatDate(meta.date)}
           </Column>
           <Column start={[1, 2, 3, 3]} width={[6, 6, 6, 6]}>
-            <ReferencesProvider color={meta.color} references={references}>
+            <ReferencesProvider
+              key={meta.title}
+              color={meta.color}
+              references={references}
+            >
               <Box as='article'>{children}</Box>
             </ReferencesProvider>
             <Divider sx={{ mt: [6, 6, 7, 7] }} />
