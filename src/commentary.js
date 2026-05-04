@@ -213,6 +213,7 @@ const Commentary = ({
 
           <Column start={[1, 2, 4, 4]} width={[6, 6, 6, 6]} sx={{ order: [5] }}>
             <ReferencesProvider
+              key={meta.title}
               color={meta.color}
               references={references}
               mode='dual'
