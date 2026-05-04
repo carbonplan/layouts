@@ -16,7 +16,6 @@ const Supplement = ({
   sx,
   ...props
 }) => {
-  console.log('in here')
   return (
     <Layout
       card={`${prefix}/social/${meta.card}.png`}
